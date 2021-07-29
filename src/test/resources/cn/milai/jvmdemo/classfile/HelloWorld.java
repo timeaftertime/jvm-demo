@@ -1,4 +1,4 @@
-package cn.milai.jvmdemo;
+package cn.milai.jvmdemo.classfile;
 
 public class HelloWorld {
 	public static void main(String[] args) {
