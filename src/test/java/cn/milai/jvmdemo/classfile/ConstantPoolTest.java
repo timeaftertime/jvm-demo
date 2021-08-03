@@ -21,10 +21,7 @@ public class ConstantPoolTest {
 
 	@Test
 	public void testParseConstantPool() throws IOException {
-		DataInputStream in = ClassFiles.classTest();
-		skipMagicNumber(in);
-		skipVersion(in);
-		ConstantPool pool = new ConstantPool(in);
+		ConstantPool pool = createConstantPool(ClassFiles.classTest());
 		assertEquals(59, pool.size());
 		MethodrefConstant methodRef = pool.getMethodref(1);
 		assertEquals(6, methodRef.getClassIndex());
@@ -44,13 +41,26 @@ public class ConstantPoolTest {
 		assertEquals(35, nameAndType.getDescriptorIndex());
 	}
 
-	private void skipMagicNumber(DataInputStream in) throws IOException {
+	@Test
+	public void testClassIndex() throws IOException {
+		ConstantPool pool = createConstantPool(ClassFiles.helloWorld());
+		assertEquals("cn/milai/jvmdemo/classfile/HelloWorld", pool.getUTF8(pool.getClass(5).getIndex()).getValue());
+		assertEquals("java/lang/Object", pool.getUTF8(pool.getClass(6).getIndex()).getValue());
+	}
+
+	private static ConstantPool createConstantPool(DataInputStream in) throws IOException {
+		skipMagicNumber(in);
+		skipVersion(in);
+		return new ConstantPool(in);
+	}
+
+	private static void skipMagicNumber(DataInputStream in) throws IOException {
 		for (int i = 0; i < 4; i++) {
 			in.readUnsignedByte();
 		}
 	}
 
-	private void skipVersion(DataInputStream in) throws IOException {
+	private static void skipVersion(DataInputStream in) throws IOException {
 		in.readUnsignedShort();
 		in.readUnsignedShort();
 	}
