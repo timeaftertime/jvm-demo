@@ -3,6 +3,8 @@ package cn.milai.jvmdemo.classfile;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import cn.milai.jvmdemo.classfile.attribute.Attribute;
+import cn.milai.jvmdemo.classfile.attribute.Attributes;
 import cn.milai.jvmdemo.classfile.constant.ConstantPool;
 
 /**
