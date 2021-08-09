@@ -1,5 +1,8 @@
-package cn.milai.jvmdemo.classfile;
+package cn.milai.jvmdemo.classfile.constant;
 
+import static cn.milai.jvmdemo.classfile.constant.ConstantPoolTestUtils.assertFieldRef;
+import static cn.milai.jvmdemo.classfile.constant.ConstantPoolTestUtils.assertMethodRef;
+import static cn.milai.jvmdemo.classfile.constant.ConstantPoolTestUtils.assertNameAndType;
 import static org.junit.Assert.assertEquals;
 
 import java.io.DataInputStream;
@@ -7,10 +10,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import cn.milai.jvmdemo.classfile.constant.ConstantPool;
-import cn.milai.jvmdemo.classfile.constant.FieldrefConstant;
-import cn.milai.jvmdemo.classfile.constant.MethodrefConstant;
-import cn.milai.jvmdemo.classfile.constant.NameAndTypeConstant;
+import cn.milai.jvmdemo.classfile.ClassFiles;
 
 /**
  * {@link ConstantPool} 测试类
@@ -23,12 +23,8 @@ public class ConstantPoolTest {
 	public void testParseConstantPool() throws IOException {
 		ConstantPool pool = createConstantPool(ClassFiles.classTest());
 		assertEquals(59, pool.size());
-		MethodrefConstant methodRef = pool.getMethodref(1);
-		assertEquals(6, methodRef.getClassIndex());
-		assertEquals(44, methodRef.getNameAndTypeIndex());
-		FieldrefConstant fieldRef = pool.getFieldref(2);
-		assertEquals(45, fieldRef.getClassIndex());
-		assertEquals(46, fieldRef.getNameAndTypeIndex());
+		assertMethodRef(pool, 1, 6, 44);
+		assertFieldRef(pool, 2, 45, 46);
 		assertEquals(47, pool.getString(3).getIndex());
 		assertEquals(50, pool.getClass(5).getIndex());
 		assertEquals("FLAG", pool.getUTF8(7).getValue());
@@ -36,9 +32,7 @@ public class ConstantPoolTest {
 		assertEquals(Long.valueOf(12345678901L), pool.getLong(25).getValue());
 		assertEquals(Float.valueOf(Float.intBitsToFloat(0x4048F5C3)), pool.getFloat(29).getValue());
 		assertEquals(Double.valueOf(Double.longBitsToDouble(0x4005BF0995AAF790L)), pool.getDouble(32).getValue());
-		NameAndTypeConstant nameAndType = pool.getNameAndType(44);
-		assertEquals(34, nameAndType.getNameIndex());
-		assertEquals(35, nameAndType.getDescriptorIndex());
+		assertNameAndType(pool, 44, 34, 35);
 	}
 
 	@Test
