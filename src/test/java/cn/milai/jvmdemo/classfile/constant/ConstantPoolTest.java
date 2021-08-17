@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import cn.milai.jvmdemo.classfile.ClassFiles;
+import cn.milai.jvmdemo.classfile.ClassFileRes;
 
 /**
  * {@link ConstantPool} 测试类
@@ -21,7 +21,7 @@ public class ConstantPoolTest {
 
 	@Test
 	public void testParseConstantPool() throws IOException {
-		ConstantPool pool = createConstantPool(ClassFiles.classTest());
+		ConstantPool pool = createConstantPool(ClassFileRes.classTest());
 		assertEquals(59, pool.size());
 		assertMethodRef(pool, 1, 6, 44);
 		assertFieldRef(pool, 2, 45, 46);
@@ -37,7 +37,7 @@ public class ConstantPoolTest {
 
 	@Test
 	public void testClassIndex() throws IOException {
-		ConstantPool pool = createConstantPool(ClassFiles.helloWorld());
+		ConstantPool pool = createConstantPool(ClassFileRes.helloWorld());
 		assertEquals("cn/milai/jvmdemo/classfile/HelloWorld", pool.getUTF8(pool.getClass(5).getIndex()).getValue());
 		assertEquals("java/lang/Object", pool.getUTF8(pool.getClass(6).getIndex()).getValue());
 	}

@@ -35,16 +35,16 @@ public class ConstantFactory {
 			case METHODREF :
 				return new MethodrefConstant();
 			case INTERFACE_METHODREF :
-				return new InterfaceMethodrefConstantInfo();
+				return new InterfaceMethodrefConstant();
 			case NAME_AND_TYPE :
 				return new NameAndTypeConstant();
 
 			case METHOD_HANDLE :
-				return new MethodHandleConstantInfo();
+				return new MethodHandleConstant();
 			case METHOD_TYPE :
-				return new MethodTypeConstantInfo();
+				return new MethodTypeConstant();
 			case INVOKE_DYNAMIC :
-				return new InvokeDynamicConstantInfo();
+				return new InvokeDynamicConstant();
 
 			default:
 				throw new IllegalArgumentException("不支持的常量类型:" + tag);

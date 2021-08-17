@@ -3,11 +3,11 @@ package cn.milai.jvmdemo.classfile.constant;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class MethodTypeConstantInfo implements Constant {
+public class MethodTypeConstant implements Constant {
 
 	private int descriptorIndex;
 
-	MethodTypeConstantInfo() {}
+	MethodTypeConstant() {}
 
 	@Override
 	public ConstantTag tag() { return ConstantTag.METHOD_TYPE; }

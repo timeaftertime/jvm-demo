@@ -27,7 +27,7 @@ public class ClassMetadataTest {
 
 	@Test
 	public void testParseClassFile() throws IOException {
-		ClassMetadata metadata = new ClassMetadata(ClassFiles.helloWorld());
+		ClassMetadata metadata = ClassMetadataRes.helloWorld();
 
 		assertEquals("CAFEBABE", metadata.getMagicNumber());
 		assertEquals(0, metadata.getMinorVersion());

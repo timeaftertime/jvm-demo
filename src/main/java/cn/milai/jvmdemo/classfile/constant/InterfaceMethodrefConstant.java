@@ -1,8 +1,8 @@
 package cn.milai.jvmdemo.classfile.constant;
 
-public class InterfaceMethodrefConstantInfo extends RefConstant {
+public class InterfaceMethodrefConstant extends RefConstant {
 
-	InterfaceMethodrefConstantInfo() {}
+	InterfaceMethodrefConstant() {}
 
 	@Override
 	public ConstantTag tag() { return ConstantTag.INTERFACE_METHODREF; }

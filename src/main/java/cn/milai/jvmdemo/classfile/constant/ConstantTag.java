@@ -24,7 +24,9 @@ public enum ConstantTag {
 
 	private int value;
 
-	private ConstantTag(int value) { this.value = value; }
+	private ConstantTag(int value) {
+		this.value = value;
+	}
 
 	public int getValue() { return value; }
 
@@ -41,6 +43,10 @@ public enum ConstantTag {
 			}
 		}
 		throw new IllegalArgumentException(value + "");
+	}
+
+	public static boolean needDoubleSlot(ConstantTag tag) {
+		return tag == ConstantTag.LONG || tag == ConstantTag.DOUBLE;
 	}
 
 }

@@ -3,12 +3,12 @@ package cn.milai.jvmdemo.classfile.constant;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class InvokeDynamicConstantInfo implements Constant {
+public class InvokeDynamicConstant implements Constant {
 
 	private int bootstrapMethodAttrIndex;
 	private int nameAndTypeIndex;
 
-	InvokeDynamicConstantInfo() {}
+	InvokeDynamicConstant() {}
 
 	@Override
 	public ConstantTag tag() { return ConstantTag.INVOKE_DYNAMIC; }

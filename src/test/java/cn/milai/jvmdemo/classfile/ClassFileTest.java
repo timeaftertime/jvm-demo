@@ -16,7 +16,7 @@ public class ClassFileTest {
 
 	@Test
 	public void testClassFileMagicNumberAndVersion() throws IOException {
-		DataInputStream in = ClassFiles.helloWorld();
+		DataInputStream in = ClassFileRes.helloWorld();
 		String[] magicNumber = new String[] { "CA", "FE", "BA", "BE" };
 		for (int i = 0; i < 4; i++) {
 			assertEquals(Integer.parseInt(magicNumber[i], 16), in.readUnsignedByte());

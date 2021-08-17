@@ -19,14 +19,10 @@ public class ConstantPool {
 			int tag = data.readUnsignedByte();
 			infos[i] = ConstantFactory.create(tag);
 			infos[i].init(data, this);
-			if (needDoubleSlot(infos[i])) {
+			if (ConstantTag.needDoubleSlot(infos[i].tag())) {
 				i++;
 			}
 		}
-	}
-
-	private static boolean needDoubleSlot(Constant c) {
-		return c.tag() == ConstantTag.LONG || c.tag() == ConstantTag.DOUBLE;
 	}
 
 	public Constant get(int index) {
@@ -42,26 +38,48 @@ public class ConstantPool {
 	 * 获取包含的常量个数
 	 * @return
 	 */
-	public int size() { return infos.length; }
+	public int size() {
+		return infos.length;
+	}
 
-	public MethodrefConstant getMethodref(int index) { return (MethodrefConstant) get(index); }
+	public MethodrefConstant getMethodref(int index) {
+		return (MethodrefConstant) get(index);
+	}
 
-	public FieldrefConstant getFieldref(int index) { return (FieldrefConstant) get(index); }
+	public FieldrefConstant getFieldref(int index) {
+		return (FieldrefConstant) get(index);
+	}
 
-	public StringConstant getString(int index) { return (StringConstant) get(index); }
+	public StringConstant getString(int index) {
+		return (StringConstant) get(index);
+	}
 
-	public ClassConstant getClass(int index) { return (ClassConstant) get(index); }
+	public ClassConstant getClass(int index) {
+		return (ClassConstant) get(index);
+	}
 
-	public FloatConstant getFloat(int index) { return (FloatConstant) get(index); }
+	public FloatConstant getFloat(int index) {
+		return (FloatConstant) get(index);
+	}
 
-	public IntegerConstant getInteger(int index) { return (IntegerConstant) get(index); }
+	public IntegerConstant getInteger(int index) {
+		return (IntegerConstant) get(index);
+	}
 
-	public LongConstant getLong(int index) { return (LongConstant) get(index); }
+	public LongConstant getLong(int index) {
+		return (LongConstant) get(index);
+	}
 
-	public DoubleConstant getDouble(int index) { return (DoubleConstant) get(index); }
+	public DoubleConstant getDouble(int index) {
+		return (DoubleConstant) get(index);
+	}
 
-	public NameAndTypeConstant getNameAndType(int index) { return (NameAndTypeConstant) get(index); }
+	public NameAndTypeConstant getNameAndType(int index) {
+		return (NameAndTypeConstant) get(index);
+	}
 
-	public UTF8Constant getUTF8(int index) { return (UTF8Constant) get(index); }
+	public UTF8Constant getUTF8(int index) {
+		return (UTF8Constant) get(index);
+	}
 
 }

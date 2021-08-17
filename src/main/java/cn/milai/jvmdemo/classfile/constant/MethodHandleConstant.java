@@ -3,12 +3,12 @@ package cn.milai.jvmdemo.classfile.constant;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class MethodHandleConstantInfo implements Constant {
+public class MethodHandleConstant implements Constant {
 
 	private int refKind;
 	private int refIndex;
 
-	MethodHandleConstantInfo() {}
+	MethodHandleConstant() {}
 
 	@Override
 	public ConstantTag tag() { return ConstantTag.METHOD_HANDLE; }
