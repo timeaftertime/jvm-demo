@@ -18,4 +18,13 @@ public class ClassNames {
 	public static String fromSlash(String slashClassName) {
 		return slashClassName.replace("/", ".");
 	}
+
+	/**
+	 * 将点分割的全类名转换为斜杠分割的全类名
+	 * @param dotClassName
+	 * @return
+	 */
+	public static String toSlash(String dotClassName) {
+		return dotClassName.replace(".", "/");
+	}
 }

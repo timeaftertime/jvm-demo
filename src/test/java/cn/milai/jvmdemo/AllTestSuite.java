@@ -11,7 +11,8 @@ import cn.milai.jvmdemo.util.ClassNamesTest;
 @RunWith(Suite.class)
 @SuiteClasses(
 	{
-		JVMTest.class, ClassFileTestSuite.class, RuntimeTestSuite.class, ClassNamesTest.class
+		JVMTest.class, ClassFileTestSuite.class, RuntimeTestSuite.class, ClassNamesTest.class,
+		DefaultClassInfoLoaderTest.class, ClassInfoLoaderTest.class
 	}
 )
 public class AllTestSuite {

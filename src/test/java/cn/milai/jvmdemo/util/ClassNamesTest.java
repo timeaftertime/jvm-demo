@@ -21,4 +21,15 @@ public class ClassNamesTest {
 		assertEquals("java.lang.Object", ClassNames.fromSlash("java/lang/Object"));
 		assertEquals("java.lang.StringBuilder", ClassNames.fromSlash("java/lang/StringBuilder"));
 	}
+
+	@Test
+	public void testToSlash() {
+		assertEquals(
+			"cn/milai/jvmdemo/classfile/constant/Constant", ClassNames.toSlash(
+				"cn.milai.jvmdemo.classfile.constant.Constant"
+			)
+		);
+		assertEquals("java/lang/Comparable", ClassNames.toSlash("java.lang.Comparable"));
+		assertEquals("java/lang/String", ClassNames.toSlash("java.lang.String"));
+	}
 }
