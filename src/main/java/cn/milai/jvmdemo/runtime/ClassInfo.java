@@ -22,6 +22,9 @@ public class ClassInfo {
 	private RTConstantPool pool;
 	private String sourceFileName;
 
+	private Field[] fields;
+	private Method[] methods;
+
 	public ClassInfo(ClassMetadata metadata) {
 		parseConstantPool(metadata);
 		parseClassName(metadata);
@@ -42,16 +45,18 @@ public class ClassInfo {
 	}
 
 	private void parseSuperClassName(ClassMetadata metadata) {
-		if (metadata.getSuperClassIndex() == 0)
+		if (metadata.getSuperClassIndex() == 0) {
 			return;
+		}
 		superName = getClassConstantInfoName(metadata.getSuperClassIndex(), metadata);
 	}
 
 	private void parseInterfacesName(ClassMetadata metadata) {
 		int[] interfaces = metadata.getInterfacesIndex();
 		interfacesName = new String[interfaces.length];
-		for (int i = 0; i < interfaces.length; i++)
+		for (int i = 0; i < interfaces.length; i++) {
 			interfacesName[i] = getClassConstantInfoName(interfaces[i], metadata);
+		}
 	}
 
 	private void parseAccessMask(ClassMetadata metadata) {
@@ -59,11 +64,19 @@ public class ClassInfo {
 	}
 
 	private void parseFields(ClassMetadata metadata, RTConstantPool pool) {
-		// TODO
+		int len = metadata.getFields().length;
+		fields = new Field[len];
+		for (int i = 0; i < len; i++) {
+			fields[i] = new Field(this, metadata.getFieldClassMember(i), pool);
+		}
 	}
 
 	private void parseMethods(ClassMetadata metadata, RTConstantPool pool) {
-		// TODO
+		int len = metadata.getMethods().length;
+		methods = new Method[len];
+		for (int i = 0; i < len; i++) {
+			methods[i] = new Method(this, metadata.getMethodClassMember(i), pool);
+		}
 	}
 
 	private void parseSourceFileName(ClassMetadata metadata, RTConstantPool pool) {
@@ -108,11 +121,34 @@ public class ClassInfo {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof ClassInfo))
+		if (!(obj instanceof ClassInfo)) {
 			return false;
+		}
 		return ((ClassInfo) obj).name.equals(name);
 	}
 
 	public String getSourceFileName() { return sourceFileName; }
+
+	public Field[] getFields() { return fields; }
+
+	public Field getField(String name, String descriptor) {
+		for (Field field : fields) {
+			if (field.getName().equals(name) && field.getDescriptor().equals(descriptor)) {
+				return field;
+			}
+		}
+		return null;
+	}
+
+	public Method[] getMethods() { return methods; }
+
+	public Method getMethod(String name, String descriptor) {
+		for (Method method : methods) {
+			if (method.getName().equals(name) && method.getDescriptor().equals(descriptor)) {
+				return method;
+			}
+		}
+		return null;
+	}
 
 }

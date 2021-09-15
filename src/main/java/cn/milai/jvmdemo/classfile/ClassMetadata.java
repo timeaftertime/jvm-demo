@@ -80,9 +80,13 @@ public class ClassMetadata {
 		}
 	}
 
-	private void readFieldMembers(DataInputStream data) throws IOException { fieldMembers = readClassMembers(data); }
+	private void readFieldMembers(DataInputStream data) throws IOException {
+		fieldMembers = readClassMembers(data);
+	}
 
-	private void readMethodMembers(DataInputStream data) throws IOException { methodMembers = readClassMembers(data); }
+	private void readMethodMembers(DataInputStream data) throws IOException {
+		methodMembers = readClassMembers(data);
+	}
 
 	private ClassMember[] readClassMembers(DataInputStream data) throws IOException {
 		int memberCount = data.readUnsignedShort();
@@ -113,22 +117,12 @@ public class ClassMetadata {
 
 	public int[] getInterfacesIndex() { return interfacesIndex; }
 
-	public ClassMember getFieldClassMember(String name, String descriptor) {
-		for (ClassMember member : fieldMembers) {
-			if (constantPool.getUTF8(member.getNameIndex()).getValue().equals(name)
-				&& constantPool.getUTF8(member.getDescriptorIndex()).getValue().equals(descriptor))
-				return member;
-		}
-		return null;
+	public ClassMember getFieldClassMember(int index) {
+		return fieldMembers[index];
 	}
 
-	public ClassMember getMethodClassMember(String name, String descriptor) {
-		for (ClassMember member : methodMembers) {
-			if (constantPool.getUTF8(member.getNameIndex()).getValue().equals(name)
-				&& constantPool.getUTF8(member.getDescriptorIndex()).getValue().equals(descriptor))
-				return member;
-		}
-		return null;
+	public ClassMember getMethodClassMember(int index) {
+		return methodMembers[index];
 	}
 
 	public Attribute[] getAttributes() { return attributes; }

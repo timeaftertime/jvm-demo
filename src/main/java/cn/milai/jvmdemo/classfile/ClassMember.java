@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import cn.milai.jvmdemo.classfile.attribute.Attribute;
 import cn.milai.jvmdemo.classfile.attribute.Attributes;
+import cn.milai.jvmdemo.classfile.attribute.CodeAttribute;
+import cn.milai.jvmdemo.classfile.attribute.ConstantValueAttribute;
 import cn.milai.jvmdemo.classfile.constant.ConstantPool;
 
 /**
@@ -31,6 +33,22 @@ public class ClassMember {
 	public int getNameIndex() { return nameIndex; }
 
 	public int getDescriptorIndex() { return descriptorIndex; }
+
+	public CodeAttribute getCodeAttribute() {
+		for (Attribute attribute : attributes) {
+			if (attribute instanceof CodeAttribute)
+				return (CodeAttribute) attribute;
+		}
+		return null;
+	}
+
+	public ConstantValueAttribute getConstantValueAttribute() {
+		for (Attribute attribute : attributes) {
+			if (attribute instanceof ConstantValueAttribute)
+				return (ConstantValueAttribute) attribute;
+		}
+		return null;
+	}
 
 	@Override
 	public String toString() {
