@@ -17,7 +17,7 @@ import cn.milai.jvmdemo.util.ClassNames;
  * @author milai
  * @date 2021.08.26
  */
-public final class DefaultClassInfoLoader {
+public final class DefaultClassInfoLoader implements ClassInfoLoader {
 
 	public static final String LIB_PATH = Env.JAVA_HOME + "lib/";
 
@@ -90,7 +90,7 @@ public final class DefaultClassInfoLoader {
 		File file = new File(path + ClassNames.toSlash(name) + CLASS);
 		if (file.exists()) {
 			try {
-				return new ClassInfo(new ClassMetadata(new FileInputStream(file)));
+				return new ClassInfo(new ClassMetadata(new FileInputStream(file)), this);
 			} catch (IOException e) {
 				// TODO 日志
 			}
@@ -101,7 +101,7 @@ public final class DefaultClassInfoLoader {
 	private ClassInfo findInJar(File jar, String path) {
 		String url = PROTOCAL_JAR_FILE + jar.getAbsolutePath().replace("\\", "/") + "!/" + path;
 		try (InputStream in = new URL(url).openConnection().getInputStream()) {
-			return new ClassInfo(new ClassMetadata(in));
+			return new ClassInfo(new ClassMetadata(in), this);
 		} catch (IOException e) {
 			// TODO 日志
 		}

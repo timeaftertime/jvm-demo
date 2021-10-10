@@ -7,37 +7,35 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import cn.milai.jvmdemo.classfile.ClassFileRes;
 import cn.milai.jvmdemo.runtime.ClassInfo;
 
 /**
- * {@link ClassInfoLoader} 测试类
+ * {@link ParentClassInfoLoader} 测试类
  * @author milai
  * @date 2021.08.29
  */
-public class ClassInfoLoaderTest {
+public class ParentClassInfoLoaderTest {
 
 	@Test
 	public void testLoadClass() {
 		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
 		String TEST_ERR_MSG = "测试消息";
-		ClassInfoLoader loader = new ClassInfoLoader() {
+		ParentClassInfoLoader loader = new ParentClassInfoLoader() {
 			@Override
 			protected ClassInfo loadClass(String name) {
 				throw new ClassInfoNotFoundException(TEST_ERR_MSG);
 			}
 		};
 
-		String COMPARABLE = "java.lang.Comparable";
-		ClassInfo comparable = loader.load(COMPARABLE);
-		assertEquals(COMPARABLE, comparable.getName());
+		ClassInfo comparable = loader.load(Classes.COMPARABLE);
+		assertEquals(Classes.COMPARABLE, comparable.getName());
 		assertEquals("java.lang.Object", comparable.getSuperName());
 		assertEquals(0, comparable.getInterfacesName().length);
 
-		ClassInfo hello = loader.load(ClassFileRes.HELLO_WORLD);
+		ClassInfo hello = loader.load(Classes.HELLO_WORLD);
 		assertNotNull(hello);
-		assertEquals(ClassFileRes.HELLO_WORLD, hello.getName());
-		assertEquals("java.lang.Object", hello.getSuperName());
+		assertEquals(Classes.HELLO_WORLD, hello.getName());
+		assertEquals(Classes.OBJECT, hello.getSuperName());
 		assertEquals(0, hello.getInterfacesName().length);
 
 		String CLASS_NOT_FOUND = "class.not.found";

@@ -1,7 +1,9 @@
 package cn.milai.jvmdemo.classfile;
 
 import java.io.DataInputStream;
+import java.io.InputStream;
 
+import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.util.ClassNames;
 
 /**
@@ -15,25 +17,24 @@ public class ClassFileRes {
 
 	private static final String SUFFIX = ".class";
 
-	public static final String HELLO_WORLD = "cn.milai.jvmdemo.classfile.HelloWorld";
-
-	public static final String CLASS_TEST = "cn.milai.jvmdemo.classfile.ClassTest";
-
-	public static final String CONSTANT_WRAPPER = "cn.milai.jvmdemo.runtime.ConstantWrapper";
-
 	public static DataInputStream helloWorld() {
-		return read(PREFIX + ClassNames.toSlash(HELLO_WORLD) + SUFFIX);
+		return read(PREFIX + ClassNames.toSlash(Classes.HELLO_WORLD) + SUFFIX);
 	}
 
 	public static DataInputStream classTest() {
-		return read(PREFIX + ClassNames.toSlash(CLASS_TEST) + SUFFIX);
+		return read(PREFIX + ClassNames.toSlash(Classes.CLASS_TEST) + SUFFIX);
 	}
 
 	public static DataInputStream constantWrapper() {
-		return read(PREFIX + ClassNames.toSlash(CONSTANT_WRAPPER) + SUFFIX);
+		return read(PREFIX + ClassNames.toSlash(Classes.CONSTANT_WRAPPER) + SUFFIX);
+	}
+
+	public static InputStream stringLenComparator() {
+		return read(PREFIX + ClassNames.toSlash(Classes.STRING_LEN_COMPARATOR) + SUFFIX);
 	}
 
 	private static DataInputStream read(String res) {
 		return new DataInputStream(ClassFileRes.class.getResourceAsStream(res));
 	}
+
 }

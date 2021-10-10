@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.classfile.ClassMetadataRes;
 
 /**
@@ -18,25 +19,21 @@ public class RTConstantPoolTest {
 	@Test
 	public void testFromConstantPool() throws IOException {
 		RTConstantPool pool = new RTConstantPool(ClassMetadataRes.constantWrapper().getConstantPool(), null);
-		String OBJECT = "java.lang.Object";
-		String STRING_BUILDER = "java.lang.StringBuilder";
-		String CONSTANT = "cn.milai.jvmdemo.classfile.constant.Constant";
-		String CONSTANT_WRAPPER = "cn.milai.jvmdemo.runtime.ConstantWrapper";
 		assertEquals(42, pool.size());
-		assertMethodRef(pool, 1, OBJECT, "<init>", "()V");
-		assertFieldRef(pool, 2, CONSTANT_WRAPPER, "c", "Lcn/milai/jvmdemo/classfile/constant/Constant;");
-		assertEquals(STRING_BUILDER, pool.getClassRef(3).targetClassName());
-		assertMethodRef(pool, 4, STRING_BUILDER, "<init>", "()V");
+		assertMethodRef(pool, 1, Classes.OBJECT, "<init>", "()V");
+		assertFieldRef(pool, 2, Classes.CONSTANT_WRAPPER, "c", "Lcn/milai/jvmdemo/classfile/constant/Constant;");
+		assertEquals(Classes.STRING_BUILDER, pool.getClassRef(3).targetClassName());
+		assertMethodRef(pool, 4, Classes.STRING_BUILDER, "<init>", "()V");
 		assertEquals("ConstantWrapper(tag=", pool.getString(5));
-		assertMethodRef(pool, 6, STRING_BUILDER, "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;");
+		assertMethodRef(pool, 6, Classes.STRING_BUILDER, "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;");
 		assertInterfaceMethodRef(
-			pool, 7, CONSTANT, "tag", "()Lcn/milai/jvmdemo/classfile/constant/ConstantTag;"
+			pool, 7, Classes.CONSTANT, "tag", "()Lcn/milai/jvmdemo/classfile/constant/ConstantTag;"
 		);
-		assertMethodRef(pool, 8, STRING_BUILDER, "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;");
+		assertMethodRef(pool, 8, Classes.STRING_BUILDER, "append", "(Ljava/lang/Object;)Ljava/lang/StringBuilder;");
 		assertEquals("0", pool.getString(9));
-		assertMethodRef(pool, 10, STRING_BUILDER, "toString", "()Ljava/lang/String;");
-		assertEquals(CONSTANT_WRAPPER, pool.getClassRef(11).targetClassName());
-		assertEquals(OBJECT, pool.getClassRef(12).targetClassName());
+		assertMethodRef(pool, 10, Classes.STRING_BUILDER, "toString", "()Ljava/lang/String;");
+		assertEquals(Classes.CONSTANT_WRAPPER, pool.getClassRef(11).targetClassName());
+		assertEquals(Classes.OBJECT, pool.getClassRef(12).targetClassName());
 		assertEquals("c", pool.getString(13));
 		assertEquals("Lcn/milai/jvmdemo/classfile/constant/Constant;", pool.getString(14));
 		assertEquals("<init>", pool.getString(15));
@@ -49,7 +46,7 @@ public class RTConstantPoolTest {
 		assertEquals("ConstantWrapper.java", pool.getString(22));
 		assertEquals("java/lang/StringBuilder", pool.getString(25));
 		assertEquals("ConstantWrapper(tag=", pool.getString(26));
-		assertEquals(CONSTANT, pool.getClassRef(28).targetClassName());
+		assertEquals(Classes.CONSTANT, pool.getClassRef(28).targetClassName());
 		assertEquals("0", pool.getString(31));
 		assertEquals("cn/milai/jvmdemo/runtime/ConstantWrapper", pool.getString(33));
 		assertEquals("java/lang/Object", pool.getString(34));

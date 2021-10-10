@@ -21,4 +21,8 @@ public class ClassMetadataRes {
 		return new ClassMetadata(ClassFileRes.constantWrapper());
 	}
 
+	public static ClassMetadata stringLenComparator() throws IOException {
+		return new ClassMetadata(ClassFileRes.stringLenComparator());
+	}
+
 }

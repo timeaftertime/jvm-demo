@@ -12,7 +12,7 @@ import cn.milai.jvmdemo.util.ClassNamesTest;
 @SuiteClasses(
 	{
 		JVMTest.class, ClassFileTestSuite.class, RuntimeTestSuite.class, ClassNamesTest.class,
-		DefaultClassInfoLoaderTest.class, ClassInfoLoaderTest.class
+		DefaultClassInfoLoaderTest.class, ParentClassInfoLoaderTest.class
 	}
 )
 public class AllTestSuite {
