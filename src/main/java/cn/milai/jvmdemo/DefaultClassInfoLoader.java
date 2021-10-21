@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cn.milai.jvmdemo.classfile.ClassMetadata;
 import cn.milai.jvmdemo.runtime.ClassInfo;
@@ -31,9 +33,12 @@ public final class DefaultClassInfoLoader implements ClassInfoLoader {
 
 	private List<String> classPaths;
 
+	private Map<String, ClassInfo> loaded;
+
 	private static DefaultClassInfoLoader INSTANCE;
 
 	private DefaultClassInfoLoader() {
+		loaded = new HashMap<>();
 	}
 
 	public static void init(List<String> classPaths) {
@@ -51,7 +56,11 @@ public final class DefaultClassInfoLoader implements ClassInfoLoader {
 		return INSTANCE;
 	}
 
-	public ClassInfo load(String name) {
+	public synchronized ClassInfo load(String name) {
+		return loaded.computeIfAbsent(name, this::doLoad);
+	}
+
+	private ClassInfo doLoad(String name) {
 		// Bootstrap ClassLoader
 		ClassInfo classInfo = loadFromJars(LIB_PATH, name);
 		// Extension ClassLoader

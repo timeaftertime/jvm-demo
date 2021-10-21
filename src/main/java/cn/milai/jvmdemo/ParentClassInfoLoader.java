@@ -26,9 +26,10 @@ public abstract class ParentClassInfoLoader implements ClassInfoLoader {
 	}
 
 	public synchronized ClassInfo load(String name) throws ClassInfoNotFoundException {
-		if (loaded.containsKey(name)) {
-			return loaded.get(name);
-		}
+		return loaded.computeIfAbsent(name, this::doLoad);
+	}
+
+	private ClassInfo doLoad(String name) {
 		ClassInfo classInfo = null;
 		if (parent == null) {
 			classInfo = loadFromDefaultLoader(name);

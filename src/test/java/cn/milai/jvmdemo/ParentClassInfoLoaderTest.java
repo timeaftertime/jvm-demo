@@ -2,9 +2,11 @@ package cn.milai.jvmdemo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import cn.milai.jvmdemo.runtime.ClassInfo;
@@ -16,17 +18,22 @@ import cn.milai.jvmdemo.runtime.ClassInfo;
  */
 public class ParentClassInfoLoaderTest {
 
-	@Test
-	public void testLoadClass() {
+	private static ClassInfoLoader loader;
+	private static String TEST_ERR_MSG = "测试消息";
+
+	@BeforeClass
+	public static void setUp() {
 		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
-		String TEST_ERR_MSG = "测试消息";
-		ParentClassInfoLoader loader = new ParentClassInfoLoader() {
+		loader = new ParentClassInfoLoader() {
 			@Override
 			protected ClassInfo loadClass(String name) {
 				throw new ClassInfoNotFoundException(TEST_ERR_MSG);
 			}
 		};
+	}
 
+	@Test
+	public void testLoadClass() {
 		ClassInfo comparable = loader.load(Classes.COMPARABLE);
 		assertEquals(Classes.COMPARABLE, comparable.getName());
 		assertEquals("java.lang.Object", comparable.getSuperName());
@@ -47,6 +54,11 @@ public class ParentClassInfoLoaderTest {
 			return;
 		}
 		fail();
+	}
+
+	@Test
+	public void testLoadSame() {
+		assertSame(loader.load(Classes.COLLECTION), loader.load(Classes.COLLECTION));
 	}
 
 }

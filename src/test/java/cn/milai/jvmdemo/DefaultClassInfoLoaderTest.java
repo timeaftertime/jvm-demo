@@ -2,7 +2,9 @@ package cn.milai.jvmdemo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import cn.milai.jvmdemo.runtime.ClassInfo;
@@ -14,10 +16,16 @@ import cn.milai.jvmdemo.runtime.ClassInfo;
  */
 public class DefaultClassInfoLoaderTest {
 
+	private static ClassInfoLoader loader;
+
+	@BeforeClass
+	public static void setUp() {
+		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
+		loader = DefaultClassInfoLoader.getInstance();
+	}
+
 	@Test
 	public void testLoadJDKClass() {
-		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
-		DefaultClassInfoLoader loader = DefaultClassInfoLoader.getInstance();
 		ClassInfo comparable = loader.load(Classes.COMPARABLE);
 		assertEquals(Classes.COMPARABLE, comparable.getName());
 		assertEquals("java.lang.Object", comparable.getSuperName());
@@ -33,6 +41,11 @@ public class DefaultClassInfoLoaderTest {
 		assertEquals(Classes.HELLO_WORLD, hello.getName());
 		assertEquals(Classes.OBJECT, hello.getSuperName());
 		assertEquals(0, hello.getInterfacesName().length);
+	}
+
+	@Test
+	public void testLoadSame() {
+		assertSame(loader.load(Classes.COMPARABLE), loader.load(Classes.COMPARABLE));
 	}
 
 }
