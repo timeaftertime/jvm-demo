@@ -17,8 +17,12 @@ public class Classes {
 	public static final String CONSTANT_WRAPPER = "cn.milai.jvmdemo.runtime.ConstantWrapper";
 
 	public static final String STRING_LEN_COMPARATOR = "cn.milai.jvmdemo.runtime.StringLenComparator";
-	
+
 	public static final String CONSTANT = "cn.milai.jvmdemo.classfile.constant.Constant";
+
+	public static final String PARENT = "cn.milai.jvmdemo.runtime.Parent";
+
+	public static final String CHILD = "cn.milai.jvmdemo.runtime.Child";
 
 	public static final String OBJECT = "java.lang.Object";
 
@@ -31,8 +35,8 @@ public class Classes {
 	public static final String SERIABLIZABLE = "java.io.Serializable";
 
 	public static final String STRING = "java.lang.String";
-	
-	public static final String  STRING_BUILDER = "java.lang.StringBuilder";
+
+	public static final String STRING_BUILDER = "java.lang.StringBuilder";
 
 	public static final String COLLECTIONS = "java.util.Collections";
 

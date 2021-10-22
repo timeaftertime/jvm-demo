@@ -7,4 +7,16 @@ package cn.milai.jvmdemo.runtime;
  */
 public class ObjectRef {
 
+	private ClassInfo classInfo;
+	private MemberSlots fields;
+
+	public ObjectRef(ClassInfo classInfo, int fieldCnt) {
+		this.classInfo = classInfo;
+		this.fields = new MemberSlots(fieldCnt);
+	}
+
+	public ClassInfo getClassInfo() { return classInfo; }
+
+	public MemberSlots getFields() { return fields; }
+
 }

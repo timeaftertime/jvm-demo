@@ -45,7 +45,7 @@ public abstract class ParentClassInfoLoader implements ClassInfoLoader {
 		}
 		return classInfo;
 	}
-
+	
 	protected abstract ClassInfo loadClass(String name);
 
 	private static ClassInfo loadFromDefaultLoader(String name) {

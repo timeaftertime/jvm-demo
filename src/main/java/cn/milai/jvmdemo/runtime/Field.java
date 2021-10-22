@@ -10,6 +10,7 @@ import cn.milai.jvmdemo.classfile.attribute.ConstantValueAttribute;
  */
 public class Field extends Member {
 
+	private int slotId;
 	private int constantValueIndex;
 
 	public Field(ClassInfo owner, ClassMember member, RTConstantPool pool) {
@@ -27,6 +28,10 @@ public class Field extends Member {
 	public boolean isEnum() { return getAccess().isEnum(); }
 
 	public int getConstantValueIndex() { return constantValueIndex; }
+
+	public int getSlotId() { return slotId; }
+
+	public void setSlotId(int slotId) { this.slotId = slotId; }
 
 	@Override
 	public String toString() {

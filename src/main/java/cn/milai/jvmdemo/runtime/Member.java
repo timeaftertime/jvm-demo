@@ -46,4 +46,17 @@ public class Member {
 	 * @return
 	 */
 	public ClassInfo getClassInfo() { return owner; }
+
+	/**
+	 * 判断指定 {@code name} 和 {@code descriptor} 是否为当前 {@link Member} 的签名
+	 * @param name
+	 * @param descriptor
+	 * @return
+	 */
+	public boolean isSignature(String name, String descriptor) {
+		if (name == null || descriptor == null) {
+			return false;
+		}
+		return this.name.equals(name) && this.descriptor.equals(descriptor);
+	}
 }

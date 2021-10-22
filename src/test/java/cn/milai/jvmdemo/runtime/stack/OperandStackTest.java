@@ -33,7 +33,7 @@ public class OperandStackTest {
 		long var2 = 12345678901L;
 		float var3 = 3.14f;
 		double var4 = 3.1415926;
-		ObjectRef var5 = new ObjectRef();
+		ObjectRef var5 = new ObjectRef(null, 0);
 		double delta = 0.01;
 		operandStack.pushInt(var1);
 		operandStack.pushLong(var2);

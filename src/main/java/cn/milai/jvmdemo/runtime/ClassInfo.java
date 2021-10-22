@@ -4,6 +4,7 @@ import cn.milai.jvmdemo.ClassInfoLoader;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
 import cn.milai.jvmdemo.classfile.AccessMask;
 import cn.milai.jvmdemo.classfile.ClassMetadata;
+import cn.milai.jvmdemo.classfile.TypeDesc;
 import cn.milai.jvmdemo.classfile.attribute.Attribute;
 import cn.milai.jvmdemo.classfile.attribute.SourceFileAttribute;
 import cn.milai.jvmdemo.classfile.constant.ClassConstant;
@@ -31,6 +32,11 @@ public class ClassInfo {
 	private Field[] fields;
 	private Method[] methods;
 
+	private MemberSlots staticSlots;
+
+	private int instanceSlotSize;
+	private int staticSlotSize;
+
 	public ClassInfo(ClassMetadata metadata, DefaultClassInfoLoader loader) {
 		this.loader = loader;
 		parseConstantPool(metadata);
@@ -42,6 +48,59 @@ public class ClassInfo {
 		parseMethods(metadata, pool);
 		parseSourceFileName(metadata, pool);
 		resolveSuperAndInterface();
+		allocateSlots();
+	}
+
+	private void allocateSlots() {
+		calculateSlotIds();
+		initStaticSlots();
+	}
+
+	private void initStaticSlots() {
+		staticSlots = new MemberSlots(staticSlotSize);
+		for (Field field : fields) {
+			if (field.isStatic() && field.isFinal()) {
+				getConstantPool().get(field.getConstantValueIndex());
+				switch (TypeDesc.of(field.getDescriptor())) {
+					case BOOLEAN :
+					case BYTE :
+					case CHAR :
+					case SHORT :
+					case INT :
+						staticSlots.setInt(field.getSlotId(), pool.getInt(field.getConstantValueIndex()));
+						break;
+					case FLOAT :
+						staticSlots.setFloat(field.getSlotId(), pool.getFloat(field.getConstantValueIndex()));
+						break;
+					case LONG :
+						staticSlots.setLong(field.getSlotId(), pool.getLong(field.getConstantValueIndex()));
+						break;
+					case DOUBLE :
+						staticSlots.setDouble(field.getSlotId(), pool.getDouble(field.getConstantValueIndex()));
+						break;
+					default:
+						// TODO 引用/数组类型
+						break;
+				}
+			}
+		}
+	}
+
+	private void calculateSlotIds() {
+		int iSlotId = superClassInfo == null ? 0 : superClassInfo.instanceSlotSize;
+		int sSlotId = 0;
+		for (Field field : fields) {
+			int size = TypeDesc.of(field.getDescriptor()).needDoubleSlot() ? 2 : 1;
+			if (field.isStatic()) {
+				field.setSlotId(sSlotId);
+				sSlotId += size;
+			} else {
+				field.setSlotId(iSlotId);
+				iSlotId += size;
+			}
+		}
+		staticSlotSize = sSlotId;
+		instanceSlotSize = iSlotId;
 	}
 
 	private void resolveSuperAndInterface() {
@@ -188,9 +247,10 @@ public class ClassInfo {
 
 	public Field[] getFields() { return fields; }
 
-	public Field getField(String name, String descriptor) {
+	public Field getField(String name, String descriptor, boolean isStatic) {
 		for (Field field : fields) {
-			if (field.getName().equals(name) && field.getDescriptor().equals(descriptor)) {
+			if (field.getName().equals(name) && field.getDescriptor().equals(descriptor) && isStatic == field
+				.isStatic()) {
 				return field;
 			}
 		}
@@ -199,7 +259,7 @@ public class ClassInfo {
 
 	public Method[] getMethods() { return methods; }
 
-	public Method getMethod(String name, String descriptor) {
+	public Method getMethod(String name, String descriptor, boolean isStatic) {
 		for (Method method : methods) {
 			if (method.getName().equals(name) && method.getDescriptor().equals(descriptor)) {
 				return method;
@@ -211,5 +271,20 @@ public class ClassInfo {
 	public ClassInfo getSuperClassInfo() { return superClassInfo; }
 
 	public ClassInfo[] getInterfacesClassInfo() { return interfacesClassInfo; }
+
+	public int getInstanceSlotCnt() { return instanceSlotSize; }
+
+	public void setInstanceSlotCnt(int instanceSlotCnt) { this.instanceSlotSize = instanceSlotCnt; }
+
+	public int getStaticSlotCnt() { return staticSlotSize; }
+
+	public void setStaticSlotCnt(int staticSlotCnt) { this.staticSlotSize = staticSlotCnt; }
+
+	public MemberSlots getStaticSlots() { return staticSlots; }
+
+	@Override
+	public String toString() {
+		return String.format("ClassInfo(%s)", name);
+	}
 
 }

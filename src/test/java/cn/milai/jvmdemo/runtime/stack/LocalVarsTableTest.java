@@ -29,7 +29,7 @@ public class LocalVarsTableTest {
 		long var2 = 111222333444555L;
 		float var3 = 11.22f;
 		double var4 = 333.444;
-		ObjectRef var5 = new ObjectRef();
+		ObjectRef var5 = new ObjectRef(null, 0);
 		table.setInt(index, var1);
 		index++;
 		table.setLong(index, var2);

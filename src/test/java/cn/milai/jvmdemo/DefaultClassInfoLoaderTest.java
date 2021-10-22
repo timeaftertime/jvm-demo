@@ -28,14 +28,12 @@ public class DefaultClassInfoLoaderTest {
 	public void testLoadJDKClass() {
 		ClassInfo comparable = loader.load(Classes.COMPARABLE);
 		assertEquals(Classes.COMPARABLE, comparable.getName());
-		assertEquals("java.lang.Object", comparable.getSuperName());
+		assertEquals(Classes.OBJECT, comparable.getSuperName());
 		assertEquals(0, comparable.getInterfacesName().length);
 	}
 
 	@Test
 	public void testLoaderAppClass() {
-		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
-		DefaultClassInfoLoader loader = DefaultClassInfoLoader.getInstance();
 		ClassInfo hello = loader.load(Classes.HELLO_WORLD);
 		assertNotNull(hello);
 		assertEquals(Classes.HELLO_WORLD, hello.getName());
