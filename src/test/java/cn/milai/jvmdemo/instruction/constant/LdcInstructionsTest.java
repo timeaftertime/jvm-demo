@@ -1,4 +1,4 @@
-package cn.milai.jvmdemo.instruction;
+package cn.milai.jvmdemo.instruction.constant;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,7 +11,8 @@ import cn.milai.jvmdemo.ClassInfoLoader;
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoaderInitializer;
 import cn.milai.jvmdemo.ParentClassInfoLoader;
-import cn.milai.jvmdemo.instruction.constant.LdcInstructions;
+import cn.milai.jvmdemo.instruction.BytecodeReader;
+import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.constant.LdcInstructions.LDC;
 import cn.milai.jvmdemo.instruction.constant.LdcInstructions.LDC2_W;
 import cn.milai.jvmdemo.instruction.constant.LdcInstructions.LDC_W;

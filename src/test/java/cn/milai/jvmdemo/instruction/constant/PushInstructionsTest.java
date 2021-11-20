@@ -1,4 +1,4 @@
-package cn.milai.jvmdemo.instruction;
+package cn.milai.jvmdemo.instruction.constant;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,7 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cn.milai.jvmdemo.MockFactory;
-import cn.milai.jvmdemo.instruction.constant.PushInstructions;
+import cn.milai.jvmdemo.instruction.BytecodeReader;
+import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.constant.PushInstructions.BIPUSH;
 import cn.milai.jvmdemo.instruction.constant.PushInstructions.SIPUSH;
 import cn.milai.jvmdemo.runtime.stack.Frame;

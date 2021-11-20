@@ -1,8 +1,5 @@
 package cn.milai.jvmdemo.instruction.constant;
 
-import java.io.IOException;
-
-import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 
@@ -13,13 +10,7 @@ import cn.milai.jvmdemo.runtime.stack.Frame;
  */
 public class ConstInstructions {
 
-	private static abstract class CONST implements Instruction {
-		@Override
-		public void readOperands(BytecodeReader reader) throws IOException {
-		}
-	}
-
-	public static class ACONST_NULL extends CONST {
+	public static class ACONST_NULL implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -28,7 +19,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class ICONST_M1 extends CONST {
+	public static class ICONST_M1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -37,7 +28,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class ICONST_0 extends CONST {
+	public static class ICONST_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -46,7 +37,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class ICONST_1 extends CONST {
+	public static class ICONST_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -55,7 +46,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class ICONST_2 extends CONST {
+	public static class ICONST_2 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -64,7 +55,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class ICONST_3 extends CONST {
+	public static class ICONST_3 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -73,7 +64,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class ICONST_4 extends CONST {
+	public static class ICONST_4 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -82,7 +73,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class ICONST_5 extends CONST {
+	public static class ICONST_5 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -91,7 +82,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class LCONST_0 extends CONST {
+	public static class LCONST_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -100,7 +91,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class LCONST_1 extends CONST {
+	public static class LCONST_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -109,7 +100,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class FCONST_0 extends CONST {
+	public static class FCONST_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -118,7 +109,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class FCONST_1 extends CONST {
+	public static class FCONST_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -127,7 +118,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class FCONST_2 extends CONST {
+	public static class FCONST_2 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -136,7 +127,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class DCONST_0 extends CONST {
+	public static class DCONST_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -145,7 +136,7 @@ public class ConstInstructions {
 
 	}
 
-	public static class DCONST_1 extends CONST {
+	public static class DCONST_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {

@@ -1,4 +1,4 @@
-package cn.milai.jvmdemo.instruction;
+package cn.milai.jvmdemo.instruction.store;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
@@ -9,7 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cn.milai.jvmdemo.MockFactory;
-import cn.milai.jvmdemo.instruction.store.StoreInstructions;
+import cn.milai.jvmdemo.instruction.BytecodeReader;
+import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.store.StoreInstructions.ASTORE;
 import cn.milai.jvmdemo.instruction.store.StoreInstructions.ASTORE_0;
 import cn.milai.jvmdemo.instruction.store.StoreInstructions.ASTORE_1;

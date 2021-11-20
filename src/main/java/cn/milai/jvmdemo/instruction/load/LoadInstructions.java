@@ -13,13 +13,7 @@ import cn.milai.jvmdemo.runtime.stack.Frame;
  */
 public class LoadInstructions {
 
-	private static abstract class XLOAD_X implements Instruction {
-		@Override
-		public void readOperands(BytecodeReader reader) throws IOException {
-		}
-	}
-
-	public static class ILOAD_0 extends XLOAD_X {
+	public static class ILOAD_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -28,7 +22,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class ILOAD_1 extends XLOAD_X {
+	public static class ILOAD_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -37,7 +31,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class ILOAD_2 extends XLOAD_X {
+	public static class ILOAD_2 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -46,7 +40,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class ILOAD_3 extends XLOAD_X {
+	public static class ILOAD_3 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -55,7 +49,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class LLOAD_0 extends XLOAD_X {
+	public static class LLOAD_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -64,7 +58,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class LLOAD_1 extends XLOAD_X {
+	public static class LLOAD_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -73,7 +67,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class LLOAD_2 extends XLOAD_X {
+	public static class LLOAD_2 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -82,7 +76,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class LLOAD_3 extends XLOAD_X {
+	public static class LLOAD_3 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -91,7 +85,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class FLOAD_0 extends XLOAD_X {
+	public static class FLOAD_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -100,7 +94,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class FLOAD_1 extends XLOAD_X {
+	public static class FLOAD_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -109,7 +103,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class FLOAD_2 extends XLOAD_X {
+	public static class FLOAD_2 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -118,7 +112,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class FLOAD_3 extends XLOAD_X {
+	public static class FLOAD_3 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -127,7 +121,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class DLOAD_0 extends XLOAD_X {
+	public static class DLOAD_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -136,7 +130,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class DLOAD_1 extends XLOAD_X {
+	public static class DLOAD_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -145,7 +139,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class DLOAD_2 extends XLOAD_X {
+	public static class DLOAD_2 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -154,7 +148,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class DLOAD_3 extends XLOAD_X {
+	public static class DLOAD_3 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -163,7 +157,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class ALOAD_0 extends XLOAD_X {
+	public static class ALOAD_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -172,7 +166,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class ALOAD_1 extends XLOAD_X {
+	public static class ALOAD_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -181,7 +175,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class ALOAD_2 extends XLOAD_X {
+	public static class ALOAD_2 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -190,7 +184,7 @@ public class LoadInstructions {
 
 	}
 
-	public static class ALOAD_3 extends XLOAD_X {
+	public static class ALOAD_3 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {

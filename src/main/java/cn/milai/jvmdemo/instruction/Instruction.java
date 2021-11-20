@@ -11,8 +11,18 @@ import cn.milai.jvmdemo.runtime.stack.Frame;
  */
 public interface Instruction {
 
-	void readOperands(BytecodeReader reader) throws IOException;
+	/**
+	 * 从 {@link BytecodeReader} 读取所需的操作数
+	 * @param reader
+	 * @throws IOException
+	 */
+	default void readOperands(BytecodeReader reader) throws IOException {
+	}
 
+	/**
+	 * 在指定栈帧上执行当前指令
+	 * @param frame
+	 */
 	void execute(Frame frame);
 
 }

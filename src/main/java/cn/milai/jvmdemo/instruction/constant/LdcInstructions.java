@@ -15,7 +15,7 @@ import cn.milai.jvmdemo.runtime.stack.OperandStack;
  */
 public class LdcInstructions {
 
-	private static abstract class LDCInstruction implements Instruction {
+	private static abstract class LDCX implements Instruction {
 
 		protected int operand;
 
@@ -27,7 +27,7 @@ public class LdcInstructions {
 		protected abstract int readOperand(BytecodeReader reader) throws IOException;
 	}
 
-	public static class LDC extends LDCInstruction {
+	public static class LDC extends LDCX {
 
 		@Override
 		protected int readOperand(BytecodeReader reader) throws IOException {
@@ -52,7 +52,7 @@ public class LdcInstructions {
 
 	}
 
-	public static class LDC_W extends LDCInstruction {
+	public static class LDC_W extends LDCX {
 
 		@Override
 		protected int readOperand(BytecodeReader reader) throws IOException {
@@ -77,7 +77,7 @@ public class LdcInstructions {
 
 	}
 
-	public static class LDC2_W extends LDCInstruction {
+	public static class LDC2_W extends LDCX {
 
 		@Override
 		protected int readOperand(BytecodeReader reader) throws IOException {

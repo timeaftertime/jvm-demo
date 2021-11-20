@@ -13,13 +13,7 @@ import cn.milai.jvmdemo.runtime.stack.Frame;
  */
 public class StoreInstructions {
 
-	private static abstract class XSTORE_X implements Instruction {
-		@Override
-		public void readOperands(BytecodeReader reader) throws IOException {
-		}
-	}
-
-	public static class ISTORE_0 extends XSTORE_X {
+	public static class ISTORE_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -28,7 +22,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class ISTORE_1 extends XSTORE_X {
+	public static class ISTORE_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -37,7 +31,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class ISTORE_2 extends XSTORE_X {
+	public static class ISTORE_2 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -46,7 +40,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class ISTORE_3 extends XSTORE_X {
+	public static class ISTORE_3 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -55,7 +49,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class LSTORE_0 extends XSTORE_X {
+	public static class LSTORE_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -64,7 +58,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class LSTORE_1 extends XSTORE_X {
+	public static class LSTORE_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -73,7 +67,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class LSTORE_2 extends XSTORE_X {
+	public static class LSTORE_2 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -82,7 +76,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class LSTORE_3 extends XSTORE_X {
+	public static class LSTORE_3 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -91,7 +85,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class FSTORE_0 extends XSTORE_X {
+	public static class FSTORE_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -100,7 +94,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class FSTORE_1 extends XSTORE_X {
+	public static class FSTORE_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -109,7 +103,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class FSTORE_2 extends XSTORE_X {
+	public static class FSTORE_2 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -118,7 +112,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class FSTORE_3 extends XSTORE_X {
+	public static class FSTORE_3 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -127,7 +121,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class DSTORE_0 extends XSTORE_X {
+	public static class DSTORE_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -136,7 +130,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class DSTORE_1 extends XSTORE_X {
+	public static class DSTORE_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -145,7 +139,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class DSTORE_2 extends XSTORE_X {
+	public static class DSTORE_2 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -154,7 +148,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class DSTORE_3 extends XSTORE_X {
+	public static class DSTORE_3 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -163,7 +157,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class ASTORE_0 extends XSTORE_X {
+	public static class ASTORE_0 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -172,7 +166,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class ASTORE_1 extends XSTORE_X {
+	public static class ASTORE_1 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -181,7 +175,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class ASTORE_2 extends XSTORE_X {
+	public static class ASTORE_2 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -190,7 +184,7 @@ public class StoreInstructions {
 
 	}
 
-	public static class ASTORE_3 extends XSTORE_X {
+	public static class ASTORE_3 implements Instruction {
 
 		@Override
 		public void execute(Frame frame) {
