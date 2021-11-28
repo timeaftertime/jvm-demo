@@ -50,9 +50,9 @@ public class BytecodeReader {
 		return ((ch1 << 24) + (ch2 << 16) + (ch3 << 8) + (ch4 << 0));
 	}
 
-	public int getPc() { return pc; }
+	public int getPC() { return pc; }
 
-	public void setPc(int pc) { this.pc = pc; }
+	public void setPC(int pc) { this.pc = pc; }
 
 	public void reset(byte[] codes, int pc) {
 		this.codes = codes;

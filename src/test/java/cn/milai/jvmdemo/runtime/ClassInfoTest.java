@@ -9,7 +9,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,6 +16,7 @@ import org.junit.Test;
 import cn.milai.jvmdemo.ClassInfoLoader;
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
+import cn.milai.jvmdemo.DefaultClassInfoLoaderInitializer;
 import cn.milai.jvmdemo.ParentClassInfoLoader;
 import cn.milai.jvmdemo.classfile.TypeDesc;
 
@@ -41,7 +41,7 @@ public class ClassInfoTest {
 
 	@BeforeClass
 	public static void setUp() throws IOException {
-		DefaultClassInfoLoader.init(Arrays.asList(ClassInfoTest.class.getResource("/").getPath()));
+		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
 		loader = new ParentClassInfoLoader() {
 			protected ClassInfo loadClass(String name) {
 				throw new UnsupportedOperationException();

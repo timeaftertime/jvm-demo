@@ -16,6 +16,16 @@ public class Frame {
 	private LocalVarsTable localVars;
 	private OperandStack operands;
 
+	/**
+	 * 当前正在执行的指令的开始地址
+	 */
+	private int currentPC;
+
+	/**
+	 * 返回地址
+	 */
+	private int returnPC;
+
 	public Frame(ThreadSpace threadSpace, Method method) {
 		this.threadSpace = threadSpace;
 		this.method = method;
@@ -35,5 +45,13 @@ public class Frame {
 	public String toString() {
 		return "Frame [method=" + method + "]";
 	}
+
+	public int getCurrentPC() { return currentPC; }
+
+	public void setCurrentPC(int currentPC) { this.currentPC = currentPC; }
+
+	public int getReturnPC() { return returnPC; }
+
+	public void setReturnPC(int returnPC) { this.returnPC = returnPC; }
 
 }

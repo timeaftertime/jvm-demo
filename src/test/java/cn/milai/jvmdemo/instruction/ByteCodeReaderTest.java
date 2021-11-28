@@ -25,21 +25,21 @@ public class ByteCodeReaderTest {
 
 	@Test
 	public void read() throws IOException {
-		assertEquals(0, reader.getPc());
+		assertEquals(0, reader.getPC());
 		assertEquals(1, reader.readUint8());
-		assertEquals(1, reader.getPc());
+		assertEquals(1, reader.getPC());
 		assertEquals(2, reader.readInt8());
-		assertEquals(2, reader.getPc());
+		assertEquals(2, reader.getPC());
 		assertEquals(772, reader.readUint16());
-		assertEquals(4, reader.getPc());
+		assertEquals(4, reader.getPC());
 		assertEquals(257, reader.readInt32());
-		assertEquals(8, reader.getPc());
+		assertEquals(8, reader.getPC());
 		assertEquals(255, reader.readUint8());
-		assertEquals(9, reader.getPc());
+		assertEquals(9, reader.getPC());
 		assertEquals(-1, reader.readInt8());
-		assertEquals(10, reader.getPc());
+		assertEquals(10, reader.getPC());
 		assertEquals(-1, reader.readInt16());
-		assertEquals(12, reader.getPc());
+		assertEquals(12, reader.getPC());
 		try {
 			reader.readInt32();
 		} catch (EOFException e) {

@@ -17,8 +17,8 @@ public class InstructionFactoryTest {
 
 	@Test
 	public void testCreate() {
-		assertSame(InstructionFactory.NOP, InstructionFactory.create(Opcode.NOP.getValue()));
-		assertSame(InstructionFactory.NOP, InstructionFactory.create(Opcode.NOP.getValue()));
+		assertSame(InstructionFactory.I_NOP, InstructionFactory.create(Opcode.NOP.getValue()));
+		assertSame(InstructionFactory.I_NOP, InstructionFactory.create(Opcode.NOP.getValue()));
 		assertTrue(InstructionFactory.create(0) instanceof NOP);
 		try {
 			InstructionFactory.create(0xff + 1);

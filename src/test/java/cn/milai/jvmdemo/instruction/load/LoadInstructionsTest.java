@@ -141,33 +141,33 @@ public class LoadInstructionsTest {
 
 	private void readUint8Test() throws IOException {
 		iload.readOperands(reader);
-		assertEquals(1, reader.getPc());
+		assertEquals(1, reader.getPC());
 		lload.readOperands(reader);
-		assertEquals(2, reader.getPc());
+		assertEquals(2, reader.getPC());
 		fload.readOperands(reader);
-		assertEquals(3, reader.getPc());
+		assertEquals(3, reader.getPC());
 		dload.readOperands(reader);
-		assertEquals(4, reader.getPc());
+		assertEquals(4, reader.getPC());
 		aload.readOperands(reader);
-		assertEquals(5, reader.getPc());
+		assertEquals(5, reader.getPC());
 	}
 
 	private void readNoOperandsTest() throws IOException {
 		for (int i = 0; i < 4; i++) {
 			iload_xs[i].readOperands(reader);
-			assertEquals(5, reader.getPc());
+			assertEquals(5, reader.getPC());
 		}
 		for (int i = 0; i < 4; i++) {
 			lload_xs[i].readOperands(reader);
-			assertEquals(5, reader.getPc());
+			assertEquals(5, reader.getPC());
 		}
 		for (int i = 0; i < 4; i++) {
 			fload_xs[i].readOperands(reader);
-			assertEquals(5, reader.getPc());
+			assertEquals(5, reader.getPC());
 		}
 		for (int i = 0; i < 4; i++) {
 			dload_xs[i].readOperands(reader);
-			assertEquals(5, reader.getPc());
+			assertEquals(5, reader.getPC());
 		}
 	}
 

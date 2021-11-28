@@ -94,37 +94,37 @@ public class StoreInstructionsTest {
 
 	private void readNoOperands() throws IOException {
 		istore.readOperands(reader);
-		assertEquals(1, reader.getPc());
+		assertEquals(1, reader.getPC());
 		lstore.readOperands(reader);
-		assertEquals(2, reader.getPc());
+		assertEquals(2, reader.getPC());
 		fstore.readOperands(reader);
-		assertEquals(3, reader.getPc());
+		assertEquals(3, reader.getPC());
 		dstore.readOperands(reader);
-		assertEquals(4, reader.getPc());
+		assertEquals(4, reader.getPC());
 		astore.readOperands(reader);
-		assertEquals(5, reader.getPc());
+		assertEquals(5, reader.getPC());
 	}
 
 	private void readUInt8() throws IOException {
 		for (int i = 0; i < 4; i++) {
 			istore_x[i].readOperands(reader);
-			assertEquals(5, reader.getPc());
+			assertEquals(5, reader.getPC());
 		}
 		for (int i = 0; i < 4; i++) {
 			lstore_x[i].readOperands(reader);
-			assertEquals(5, reader.getPc());
+			assertEquals(5, reader.getPC());
 		}
 		for (int i = 0; i < 4; i++) {
 			fstore_x[i].readOperands(reader);
-			assertEquals(5, reader.getPc());
+			assertEquals(5, reader.getPC());
 		}
 		for (int i = 0; i < 4; i++) {
 			dstore_x[i].readOperands(reader);
-			assertEquals(5, reader.getPc());
+			assertEquals(5, reader.getPC());
 		}
 		for (int i = 0; i < 4; i++) {
 			astore_x[i].readOperands(reader);
-			assertEquals(5, reader.getPc());
+			assertEquals(5, reader.getPC());
 		}
 	}
 

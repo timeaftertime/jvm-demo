@@ -36,7 +36,7 @@ public class IINCTest {
 	@Test
 	public void readerOperandsAndExecute() throws IOException {
 		iinc.readOperands(reader);
-		assertEquals(2, reader.getPc());
+		assertEquals(2, reader.getPC());
 		frame.getLocalVarsTable().setInt(1, 2);
 		iinc.execute(frame);
 		assertEquals(12, frame.getLocalVarsTable().getInt(1));
