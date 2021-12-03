@@ -3,7 +3,9 @@ package cn.milai.jvmdemo.instruction;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
+import java.util.EmptyStackException;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import cn.milai.jvmdemo.Classes;
@@ -21,12 +23,13 @@ import cn.milai.jvmdemo.runtime.stack.Frame;
  */
 public class InterpreterTest {
 
-	@Test
-	public void testShowAddTest() throws IOException {
+	@BeforeClass
+	public static void init() {
 		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
-		ClassInfo addTest = DefaultClassInfoLoader.getInstance().load(Classes.ADD_TEST);
-		Frame mockFrame = new Frame(null, MockFactory.newMethod(0, 1));
-		ThreadSpace threadSpace = new ThreadSpace() {
+	}
+
+	private ThreadSpace mockThreadFrom(Frame mockFrame) {
+		return new ThreadSpace() {
 			@Override
 			public Frame currentFrame() {
 				if (super.finished()) {
@@ -35,8 +38,30 @@ public class InterpreterTest {
 				return super.currentFrame();
 			}
 		};
-		threadSpace.pushFrame(addTest.getMethod("addAndMul2", "()F", false));
+	}
+
+	private Frame executeMethod(String className, String methodName, String methodDesc, boolean isStatic)
+		throws EmptyStackException, IOException {
+		ClassInfo c = DefaultClassInfoLoader.getInstance().load(className);
+		Frame mockFrame = new Frame(null, MockFactory.newMethod(0, 1));
+		ThreadSpace threadSpace = mockThreadFrom(mockFrame);
+		threadSpace.pushFrame(c.getMethod(methodName, methodDesc, isStatic));
 		Interpreter.interpret(threadSpace);
+		return mockFrame;
+	}
+
+	@Test
+	public void testShowAddTest() throws IOException {
+		Frame mockFrame = executeMethod(Classes.ADD_TEST, "addAndMul2", "()F", false);
 		assertEquals(6, mockFrame.getOperandStack().popFloat(), 0.1);
+	}
+
+	@Test
+	public void testSwitch() throws EmptyStackException, IOException {
+		Frame mockFrame = executeMethod(Classes.SWITCH_TEST, "tableSwitch", "()I", true);
+		assertEquals(6, mockFrame.getOperandStack().popInt(), 11);
+
+		mockFrame = executeMethod(Classes.SWITCH_TEST, "lookupSwitch", "()I", true);
+		assertEquals(6, mockFrame.getOperandStack().popInt(), 5);
 	}
 }

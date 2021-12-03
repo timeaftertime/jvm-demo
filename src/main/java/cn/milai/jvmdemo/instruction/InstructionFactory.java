@@ -1,5 +1,22 @@
 package cn.milai.jvmdemo.instruction;
 
+import cn.milai.jvmdemo.instruction.compare.CmpInstructions.DCMPG;
+import cn.milai.jvmdemo.instruction.compare.CmpInstructions.DCMPL;
+import cn.milai.jvmdemo.instruction.compare.CmpInstructions.FCMPG;
+import cn.milai.jvmdemo.instruction.compare.CmpInstructions.FCMPL;
+import cn.milai.jvmdemo.instruction.compare.CmpInstructions.LCMP;
+import cn.milai.jvmdemo.instruction.compare.IfIcmpInstructions.IF_ICMPEQ;
+import cn.milai.jvmdemo.instruction.compare.IfIcmpInstructions.IF_ICMPGE;
+import cn.milai.jvmdemo.instruction.compare.IfIcmpInstructions.IF_ICMPGT;
+import cn.milai.jvmdemo.instruction.compare.IfIcmpInstructions.IF_ICMPLE;
+import cn.milai.jvmdemo.instruction.compare.IfIcmpInstructions.IF_ICMPLT;
+import cn.milai.jvmdemo.instruction.compare.IfIcmpInstructions.IF_ICMPNE;
+import cn.milai.jvmdemo.instruction.compare.IfInstructions.IFEQ;
+import cn.milai.jvmdemo.instruction.compare.IfInstructions.IFGE;
+import cn.milai.jvmdemo.instruction.compare.IfInstructions.IFGT;
+import cn.milai.jvmdemo.instruction.compare.IfInstructions.IFLE;
+import cn.milai.jvmdemo.instruction.compare.IfInstructions.IFLT;
+import cn.milai.jvmdemo.instruction.compare.IfInstructions.IFNE;
 import cn.milai.jvmdemo.instruction.constant.ConstInstructions.DCONST_0;
 import cn.milai.jvmdemo.instruction.constant.ConstInstructions.DCONST_1;
 import cn.milai.jvmdemo.instruction.constant.ConstInstructions.FCONST_0;
@@ -20,11 +37,14 @@ import cn.milai.jvmdemo.instruction.constant.LdcInstructions.LDC_W;
 import cn.milai.jvmdemo.instruction.constant.NOP;
 import cn.milai.jvmdemo.instruction.constant.PushInstructions.BIPUSH;
 import cn.milai.jvmdemo.instruction.constant.PushInstructions.SIPUSH;
+import cn.milai.jvmdemo.instruction.control.GOTO;
 import cn.milai.jvmdemo.instruction.control.ReturnInstructions.DRETURN;
 import cn.milai.jvmdemo.instruction.control.ReturnInstructions.FRETURN;
 import cn.milai.jvmdemo.instruction.control.ReturnInstructions.IRETURN;
 import cn.milai.jvmdemo.instruction.control.ReturnInstructions.LRETURN;
 import cn.milai.jvmdemo.instruction.control.ReturnInstructions.RETURN;
+import cn.milai.jvmdemo.instruction.control.SwitchInstructions.LOOKUPSWITCH;
+import cn.milai.jvmdemo.instruction.control.SwitchInstructions.TABLESWITCH;
 import cn.milai.jvmdemo.instruction.conversion.D2XInstructions.D2F;
 import cn.milai.jvmdemo.instruction.conversion.D2XInstructions.D2I;
 import cn.milai.jvmdemo.instruction.conversion.D2XInstructions.D2L;
@@ -225,6 +245,12 @@ public class InstructionFactory {
 	public static final Instruction I_LRETURN = new LRETURN();
 	public static final Instruction I_FRETURN = new FRETURN();
 	public static final Instruction I_DRETURN = new DRETURN();
+
+	public static final Instruction I_LCMP = new LCMP();
+	public static final Instruction I_FCMPL = new FCMPL();
+	public static final Instruction I_FCMPG = new FCMPG();
+	public static final Instruction I_DCMPL = new DCMPL();
+	public static final Instruction I_DCMPG = new DCMPG();
 
 	/**
 	 * 创建指定 {@code opcode} 的 {@link Instruction}
@@ -479,6 +505,48 @@ public class InstructionFactory {
 				return I_FRETURN;
 			case DRETURN :
 				return I_DRETURN;
+
+			case LCMP :
+				return I_LCMP;
+			case FCMPL :
+				return I_FCMPL;
+			case FCMPG :
+				return I_FCMPG;
+			case DCMPL :
+				return I_DCMPL;
+			case DCMPG :
+				return I_DCMPG;
+			case IFEQ :
+				return new IFEQ();
+			case IFNE :
+				return new IFNE();
+			case IFLT :
+				return new IFLT();
+			case IFGE :
+				return new IFGE();
+			case IFGT :
+				return new IFGT();
+			case IFLE :
+				return new IFLE();
+			case IF_ICMPEQ :
+				return new IF_ICMPEQ();
+			case IF_ICMPNE :
+				return new IF_ICMPNE();
+			case IF_ICMPLT :
+				return new IF_ICMPLT();
+			case IF_ICMPGE :
+				return new IF_ICMPGE();
+			case IF_ICMPGT :
+				return new IF_ICMPGT();
+			case IF_ICMPLE :
+				return new IF_ICMPLE();
+
+			case GOTO :
+				return new GOTO();
+			case TABLESWITCH :
+				return new TABLESWITCH();
+			case LOOKUPSWITCH :
+				return new LOOKUPSWITCH();
 
 			default:
 				throw new IllegalArgumentException("未实现指令类型: " + op);

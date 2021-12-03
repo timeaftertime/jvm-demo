@@ -24,7 +24,7 @@ public class ByteCodeReaderTest {
 	}
 
 	@Test
-	public void read() throws IOException {
+	public void testRead() throws IOException {
 		assertEquals(0, reader.getPC());
 		assertEquals(1, reader.readUint8());
 		assertEquals(1, reader.getPC());
@@ -46,6 +46,21 @@ public class ByteCodeReaderTest {
 			return;
 		}
 		fail();
+	}
+
+	@Test
+	public void testSkipPadding() throws Throwable {
+		assertEquals(0, reader.getPC());
+		reader.skipPadding(4);
+		assertEquals(0, reader.getPC());
+		reader.skipPadding(1);
+		assertEquals(0, reader.getPC());
+		reader.readInt8();
+		assertEquals(1, reader.getPC());
+		reader.skipPadding(4);
+		assertEquals(4, reader.getPC());
+		reader.skipPadding(6);
+		assertEquals(6, reader.getPC());
 	}
 
 }

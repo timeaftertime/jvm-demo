@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ ReturnInstructionsTest.class })
+@SuiteClasses({ ReturnInstructionsTest.class, GotoTest.class, SwitchInstructionsTest.class })
 public class ControlTestSuite {
 
 }

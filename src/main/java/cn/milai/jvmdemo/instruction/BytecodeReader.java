@@ -58,4 +58,13 @@ public class BytecodeReader {
 		this.codes = codes;
 		this.pc = pc;
 	}
+	
+	public void skipPadding(int padding) throws IOException {
+		if (padding == 0) {
+			return;
+		}
+		while (getPC() % padding != 0) {
+			readInt8();
+		}
+	}
 }

@@ -26,6 +26,8 @@ public class Classes {
 
 	public static final String ADD_TEST = "cn.milai.jvmdemo.instruction.AddTest";
 
+	public static final String SWITCH_TEST = "cn.milai.jvmdemo.instruction.SwitchTest";
+
 	public static final String OBJECT = "java.lang.Object";
 
 	public static final String COMPARATOR = "java.util.Comparator";
