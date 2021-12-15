@@ -28,6 +28,8 @@ public class Classes {
 
 	public static final String SWITCH_TEST = "cn.milai.jvmdemo.instruction.SwitchTest";
 
+	public static final String METHOD_INVOKE = "cn.milai.jvmdemo.instruction.MethodInvoke";
+
 	public static final String OBJECT = "java.lang.Object";
 
 	public static final String COMPARATOR = "java.util.Comparator";

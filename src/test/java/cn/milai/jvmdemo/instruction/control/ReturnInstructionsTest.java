@@ -49,7 +49,7 @@ public class ReturnInstructionsTest {
 		double delta = 0.01;
 		ThreadSpace space = new ThreadSpace();
 		for (int i = 0; i < x_returns.length; i++) {
-			space.pushFrame(MockFactory.newMethod(0, 2));
+			space.invoke(MockFactory.newMethod(0, 2));
 		}
 		space.currentFrame().getOperandStack().pushInt(10);
 		space.currentFrame().setReturnPC(99);

@@ -81,6 +81,7 @@ public class ClassInfoTest {
 		assertEquals(2, main.getMaxStack());
 		assertEquals(1, main.getMaxLocal());
 		assertEquals(9, main.getCodes().length);
+		assertEquals(1, main.getArgsSlotCnt());
 
 		Method init = hello.getMethod("<init>", "()V", true);
 		assertTrue(init.isPublic());
@@ -90,6 +91,7 @@ public class ClassInfoTest {
 		assertEquals(1, init.getMaxStack());
 		assertEquals(1, init.getMaxLocal());
 		assertEquals(5, init.getCodes().length);
+		assertEquals(0, init.getArgsSlotCnt());
 	}
 
 	@Test

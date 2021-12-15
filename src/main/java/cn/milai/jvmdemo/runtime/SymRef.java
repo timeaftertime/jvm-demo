@@ -10,6 +10,7 @@ import cn.milai.jvmdemo.classfile.constant.ConstantPool;
 public abstract class SymRef {
 
 	protected RTConstantPool pool;
+	private ClassInfo target;
 
 	public SymRef(ConstantPool pool, RTConstantPool rtPool) {
 		this.pool = rtPool;
@@ -20,5 +21,23 @@ public abstract class SymRef {
 	 * @return
 	 */
 	public abstract String targetClassName();
+
+	/**
+	 * 获取当前引用的目标 {@link ClassInfo}
+	 * @return
+	 */
+	public ClassInfo resolvedClass() {
+		if (target == null) {
+			target = resolveClass();
+		}
+		return target;
+	}
+
+	private ClassInfo resolveClass() {
+		ClassInfo from = pool.getOwner();
+		ClassInfo to = from.getClassInfoLoader().load(targetClassName());
+		// TODO 类访问校验
+		return to;
+	}
 
 }

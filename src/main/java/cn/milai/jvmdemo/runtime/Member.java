@@ -59,4 +59,22 @@ public class Member {
 		}
 		return this.name.equals(name) && this.descriptor.equals(descriptor);
 	}
+
+	/**
+	 * 判断当前成员是否可以被指定类访问
+	 * @param c
+	 * @return
+	 */
+	public boolean isAccessiableFrom(ClassInfo c) {
+		if (isPublic()) {
+			return true;
+		}
+		if (isPrivate()) {
+			return c == owner;
+		}
+		if (c.getPackageName().equals(owner.getPackageName())) {
+			return true;
+		}
+		return isProtected() && c.isSubClassOf(owner);
+	}
 }

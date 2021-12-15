@@ -10,7 +10,8 @@ import cn.milai.jvmdemo.runtime.stack.StackTestSuite;
 @RunWith(Suite.class)
 @SuiteClasses(
 	{
-		RTConstantPoolTest.class, ClassInfoTest.class, SlotListTest.class, StackTestSuite.class, ThreadSpaceTest.class
+		RTConstantPoolTest.class, ClassInfoTest.class, SlotListTest.class, StackTestSuite.class, ThreadSpaceTest.class,
+		MethodResolverTest.class, MethodConstTest.class
 	}
 )
 public class RuntimeTestSuite {

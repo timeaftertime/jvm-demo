@@ -37,6 +37,8 @@ public class ClassInfo {
 	private int instanceSlotSize;
 	private int staticSlotSize;
 
+	private boolean initialized;
+
 	public ClassInfo(ClassMetadata metadata, DefaultClassInfoLoader loader) {
 		this.loader = loader;
 		parseConstantPool(metadata);
@@ -217,6 +219,28 @@ public class ClassInfo {
 			}
 		}
 		return false;
+	}
+
+	public boolean isInitialized() { return initialized; }
+
+	/**
+	 * 在指定 {@link ThreadSpace} 中执行类的初始化。
+	 * 若已经初始化过，将忽略	
+	 * @param thread
+	 */
+	public synchronized void init(ThreadSpace thread) {
+		if (initialized) {
+			return;
+		}
+		initialized = true;
+		Method clinit = getMethod(MethodConst.CLINIT, MethodConst.RETURN_VOID, true);
+		if (clinit != null) {
+			thread.invoke(clinit);
+		}
+		if (superClassInfo != null) {
+			superClassInfo.init(thread);
+		}
+		return;
 	}
 
 	public String getName() { return name; }

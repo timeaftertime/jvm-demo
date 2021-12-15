@@ -45,7 +45,7 @@ public class InterpreterTest {
 		ClassInfo c = DefaultClassInfoLoader.getInstance().load(className);
 		Frame mockFrame = new Frame(null, MockFactory.newMethod(0, 1));
 		ThreadSpace threadSpace = mockThreadFrom(mockFrame);
-		threadSpace.pushFrame(c.getMethod(methodName, methodDesc, isStatic));
+		threadSpace.invoke(c.getMethod(methodName, methodDesc, isStatic));
 		Interpreter.interpret(threadSpace);
 		return mockFrame;
 	}

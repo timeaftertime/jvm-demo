@@ -2,6 +2,8 @@ package cn.milai.jvmdemo.runtime;
 
 import cn.milai.jvmdemo.runtime.stack.Frame;
 import cn.milai.jvmdemo.runtime.stack.JVMStack;
+import cn.milai.jvmdemo.runtime.stack.LocalVarsTable;
+import cn.milai.jvmdemo.runtime.stack.OperandStack;
 
 /**
  * 线程空间
@@ -20,8 +22,30 @@ public class ThreadSpace {
 		this.stack = new JVMStack(DEFAULT_MAX_STACK_SIZE);
 	}
 
-	public void pushFrame(Method method) {
+	public void invoke(Method method) {
+		if (needInvokeClinit(method)) {
+			method.getClassInfo().init(this);
+		}
+		Frame preFrame = stack.isEmpty() ? null : currentFrame();
 		stack.push(new Frame(this, method));
+		Frame newFrame = currentFrame();
+		newFrame.setReturnPC(pc);
+		if (preFrame != null) {
+			passArgs(preFrame.getOperandStack(), newFrame.getLocalVarsTable(), method.getArgsSlotCnt());
+		}
+	}
+
+	private boolean needInvokeClinit(Method method) {
+		if (MethodConst.isClinit(method)) {
+			return false;
+		}
+		return !method.getClassInfo().isInitialized();
+	}
+
+	private void passArgs(OperandStack operands, LocalVarsTable localVars, int argsSlotCnt) {
+		for (int i = argsSlotCnt - 1; i >= 0; i--) {
+			localVars.setSlot(i, operands.popSlot());
+		}
 	}
 
 	public Frame popFrame() {
@@ -35,10 +59,6 @@ public class ThreadSpace {
 	public int getPC() { return pc; }
 
 	public void setPC(int pc) { this.pc = pc; }
-
-	public void invokeMethod(Method method) {
-		pushFrame(method);
-	}
 
 	public boolean finished() {
 		return stack.isEmpty();
