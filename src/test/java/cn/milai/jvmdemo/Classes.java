@@ -30,6 +30,8 @@ public class Classes {
 
 	public static final String METHOD_INVOKE = "cn.milai.jvmdemo.instruction.MethodInvoke";
 
+	public static final String CALL_METHODS = "cn.milai.jvmdemo.instruction.CallMethods";
+
 	public static final String OBJECT = "java.lang.Object";
 
 	public static final String COMPARATOR = "java.util.Comparator";

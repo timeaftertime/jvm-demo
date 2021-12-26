@@ -23,16 +23,20 @@ public class ThreadSpace {
 	}
 
 	public void invoke(Method method) {
-		if (needInvokeClinit(method)) {
-			method.getClassInfo().init(this);
+		if (method.isNative()) {
+			return;
 		}
-		Frame preFrame = stack.isEmpty() ? null : currentFrame();
+		Frame preFrame = currentFrame();
 		stack.push(new Frame(this, method));
 		Frame newFrame = currentFrame();
 		newFrame.setReturnPC(pc);
 		if (preFrame != null) {
 			passArgs(preFrame.getOperandStack(), newFrame.getLocalVarsTable(), method.getArgsSlotCnt());
 		}
+		if (needInvokeClinit(method)) {
+			method.getClassInfo().init(this);
+		}
+		pc = 0;
 	}
 
 	private boolean needInvokeClinit(Method method) {
@@ -53,6 +57,9 @@ public class ThreadSpace {
 	}
 
 	public Frame currentFrame() {
+		if (stack.isEmpty()) {
+			return null;
+		}
 		return stack.peek();
 	}
 

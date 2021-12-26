@@ -9,6 +9,7 @@ import java.util.EmptyStackException;
 import org.junit.Before;
 import org.junit.Test;
 
+import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.runtime.ObjectRef;
 import cn.milai.jvmdemo.runtime.slot.Slot;
 
@@ -33,7 +34,7 @@ public class OperandStackTest {
 		long var2 = 12345678901L;
 		float var3 = 3.14f;
 		double var4 = 3.1415926;
-		ObjectRef var5 = new ObjectRef(null, 0);
+		ObjectRef var5 = new ObjectRef(MockFactory.classInfoWithSlotCnt(0));
 		double delta = 0.01;
 		operandStack.pushInt(var1);
 		operandStack.pushLong(var2);

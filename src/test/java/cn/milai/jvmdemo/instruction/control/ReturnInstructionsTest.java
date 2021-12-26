@@ -1,11 +1,10 @@
 package cn.milai.jvmdemo.instruction.control;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.util.EmptyStackException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -75,7 +74,7 @@ public class ReturnInstructionsTest {
 		assertEquals(999.666, space.currentFrame().getOperandStack().popDouble(), delta);
 		assertEquals(22, space.getPC());
 
-		ObjectRef ref = new ObjectRef(null, 0);
+		ObjectRef ref = new ObjectRef(MockFactory.classInfoWithSlotCnt(0));
 		space.currentFrame().getOperandStack().pushRef(ref);
 		space.currentFrame().setReturnPC(7);
 		x_returns[5].execute(space.currentFrame());
@@ -83,12 +82,7 @@ public class ReturnInstructionsTest {
 		assertEquals(7, space.getPC());
 
 		x_returns[0].execute(space.currentFrame());
-		try {
-			space.currentFrame();
-		} catch (EmptyStackException e) {
-			return;
-		}
-		fail();
+		assertNull(space.currentFrame());
 	}
 
 }

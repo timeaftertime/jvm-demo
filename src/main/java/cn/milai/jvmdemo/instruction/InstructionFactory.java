@@ -17,6 +17,7 @@ import cn.milai.jvmdemo.instruction.compare.IfInstructions.IFGT;
 import cn.milai.jvmdemo.instruction.compare.IfInstructions.IFLE;
 import cn.milai.jvmdemo.instruction.compare.IfInstructions.IFLT;
 import cn.milai.jvmdemo.instruction.compare.IfInstructions.IFNE;
+import cn.milai.jvmdemo.instruction.constant.ConstInstructions.ACONST_NULL;
 import cn.milai.jvmdemo.instruction.constant.ConstInstructions.DCONST_0;
 import cn.milai.jvmdemo.instruction.constant.ConstInstructions.DCONST_1;
 import cn.milai.jvmdemo.instruction.constant.ConstInstructions.FCONST_0;
@@ -58,6 +59,10 @@ import cn.milai.jvmdemo.instruction.conversion.L2XInstructions.L2D;
 import cn.milai.jvmdemo.instruction.conversion.L2XInstructions.L2F;
 import cn.milai.jvmdemo.instruction.conversion.L2XInstructions.L2I;
 import cn.milai.jvmdemo.instruction.load.LoadInstructions.ALOAD;
+import cn.milai.jvmdemo.instruction.load.LoadInstructions.ALOAD_0;
+import cn.milai.jvmdemo.instruction.load.LoadInstructions.ALOAD_1;
+import cn.milai.jvmdemo.instruction.load.LoadInstructions.ALOAD_2;
+import cn.milai.jvmdemo.instruction.load.LoadInstructions.ALOAD_3;
 import cn.milai.jvmdemo.instruction.load.LoadInstructions.DLOAD;
 import cn.milai.jvmdemo.instruction.load.LoadInstructions.DLOAD_0;
 import cn.milai.jvmdemo.instruction.load.LoadInstructions.DLOAD_1;
@@ -111,6 +116,11 @@ import cn.milai.jvmdemo.instruction.math.SubInstructions.ISUB;
 import cn.milai.jvmdemo.instruction.math.SubInstructions.LSUB;
 import cn.milai.jvmdemo.instruction.math.XorInstructions.IXOR;
 import cn.milai.jvmdemo.instruction.math.XorInstructions.LXOR;
+import cn.milai.jvmdemo.instruction.reference.InvokeInstructions.INVOKEINTERFACE;
+import cn.milai.jvmdemo.instruction.reference.InvokeInstructions.INVOKESPECIAL;
+import cn.milai.jvmdemo.instruction.reference.InvokeInstructions.INVOKESTATIC;
+import cn.milai.jvmdemo.instruction.reference.InvokeInstructions.INVOKEVIRTUAL;
+import cn.milai.jvmdemo.instruction.reference.New;
 import cn.milai.jvmdemo.instruction.stack.DupInstructions.DUP;
 import cn.milai.jvmdemo.instruction.stack.DupInstructions.DUP2;
 import cn.milai.jvmdemo.instruction.stack.DupInstructions.DUP2_X1;
@@ -152,6 +162,7 @@ public class InstructionFactory {
 	}
 
 	public static final Instruction I_NOP = new NOP();
+	public static final Instruction I_ACONST_NULL = new ACONST_NULL();
 	public static final Instruction I_ICONST_M1 = new ICONST_M1();
 	public static final Instruction I_ICONST_0 = new ICONST_0();
 	public static final Instruction I_ICONST_1 = new ICONST_1();
@@ -183,6 +194,10 @@ public class InstructionFactory {
 	public static final Instruction I_DLOAD_1 = new DLOAD_1();
 	public static final Instruction I_DLOAD_2 = new DLOAD_2();
 	public static final Instruction I_DLOAD_3 = new DLOAD_3();
+	public static final Instruction I_ALOAD_0 = new ALOAD_0();
+	public static final Instruction I_ALOAD_1 = new ALOAD_1();
+	public static final Instruction I_ALOAD_2 = new ALOAD_2();
+	public static final Instruction I_ALOAD_3 = new ALOAD_3();
 
 	public static final Instruction I_POP = new POP();
 	public static final Instruction I_POP2 = new POP2();
@@ -265,6 +280,8 @@ public class InstructionFactory {
 		switch (op) {
 			case NOP :
 				return I_NOP;
+			case ACOST_NULL :
+				return I_ACONST_NULL;
 			case ICONST_M1 :
 				return I_ICONST_M1;
 			case ICONST_0 :
@@ -314,6 +331,14 @@ public class InstructionFactory {
 				return new DLOAD();
 			case ALOAD :
 				return new ALOAD();
+			case ALOAD_0 :
+				return I_ALOAD_0;
+			case ALOAD_1 :
+				return I_ALOAD_1;
+			case ALOAD_2 :
+				return I_ALOAD_2;
+			case ALOAD_3 :
+				return I_ALOAD_3;
 			case ILOAD_0 :
 				return I_ILOAD_0;
 			case ILOAD_1 :
@@ -495,17 +520,6 @@ public class InstructionFactory {
 			case D2F :
 				return I_D2F;
 
-			case RETURN :
-				return I_RETURN;
-			case IRETURN :
-				return I_IRETURN;
-			case LRETURN :
-				return I_LRETURN;
-			case FRETURN :
-				return I_FRETURN;
-			case DRETURN :
-				return I_DRETURN;
-
 			case LCMP :
 				return I_LCMP;
 			case FCMPL :
@@ -547,6 +561,27 @@ public class InstructionFactory {
 				return new TABLESWITCH();
 			case LOOKUPSWITCH :
 				return new LOOKUPSWITCH();
+			case IRETURN :
+				return I_IRETURN;
+			case LRETURN :
+				return I_LRETURN;
+			case FRETURN :
+				return I_FRETURN;
+			case DRETURN :
+				return I_DRETURN;
+			case RETURN :
+				return I_RETURN;
+
+			case INVOKEVIRTUAL :
+				return new INVOKEVIRTUAL();
+			case INVOKESPECIAL :
+				return new INVOKESPECIAL();
+			case INVOKESTATIC :
+				return new INVOKESTATIC();
+			case INVOKEINTERFACE :
+				return new INVOKEINTERFACE();
+			case NEW :
+				return new New();
 
 			default:
 				throw new IllegalArgumentException("未实现指令类型: " + op);

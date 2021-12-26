@@ -68,7 +68,7 @@ public class LoadInstructionsTest {
 	@Before
 	public void setUp() {
 		for (int i = 0; i < 5; i++) {
-			refs[i] = new ObjectRef(null, 0);
+			refs[i] = new ObjectRef(MockFactory.classInfoWithSlotCnt(0));
 		}
 
 		iload = new ILOAD();

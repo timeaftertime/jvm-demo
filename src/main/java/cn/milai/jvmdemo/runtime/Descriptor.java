@@ -20,11 +20,11 @@ public class Descriptor {
 	 * 以指定字符串构造 {@link Descriptor}
 	 * @param descriptor
 	 */
-	public Descriptor(String descriptor) {
+	public Descriptor(String descriptor, boolean isStatic) {
 		List<String> types = new ArrayList<String>();
 		String type = null;
 		int nowIndex = 1;
-		int argsSlotCnt = 0;
+		int argsSlotCnt = isStatic ? 0 : 1;
 		while ((type = getNextType(nowIndex, descriptor)) != null) {
 			types.add(type);
 			nowIndex += type.length();

@@ -12,6 +12,7 @@ import cn.milai.jvmdemo.runtime.stack.Frame;
  * @date 2021.11.26
  */
 public class Interpreter {
+	
 	/**
 	 * 解释执行指定 {@link ThreadSpace}
 	 * @param thread

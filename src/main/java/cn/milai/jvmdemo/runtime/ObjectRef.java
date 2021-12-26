@@ -10,9 +10,9 @@ public class ObjectRef {
 	private ClassInfo classInfo;
 	private MemberSlots fields;
 
-	public ObjectRef(ClassInfo classInfo, int fieldCnt) {
+	public ObjectRef(ClassInfo classInfo) {
 		this.classInfo = classInfo;
-		this.fields = new MemberSlots(fieldCnt);
+		this.fields = new MemberSlots(classInfo.getInstanceSlotCnt());
 	}
 
 	public ClassInfo getClassInfo() { return classInfo; }

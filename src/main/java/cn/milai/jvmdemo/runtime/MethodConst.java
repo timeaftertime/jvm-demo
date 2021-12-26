@@ -13,7 +13,7 @@ public class MethodConst {
 
 	public static final String CLINIT = "<clinit>";
 
-	public static final String RETURN_VOID = TypeDesc.VOID.getValue() + "()";
+	public static final String RETURN_VOID = "()" + TypeDesc.VOID.getValue();
 
 	/**
 	 * 判断指定方法是否为实例初始化方法(构造方法)

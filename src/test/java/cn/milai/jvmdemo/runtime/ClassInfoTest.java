@@ -91,7 +91,7 @@ public class ClassInfoTest {
 		assertEquals(1, init.getMaxStack());
 		assertEquals(1, init.getMaxLocal());
 		assertEquals(5, init.getCodes().length);
-		assertEquals(0, init.getArgsSlotCnt());
+		assertEquals(1, init.getArgsSlotCnt());
 	}
 
 	@Test

@@ -101,7 +101,7 @@ public class InvokeInstructions {
 			ClassInfo caller = frame.getMethod().getClassInfo();
 			MethodRef ref = caller.getConstantPool().getMethodRef(operand);
 			ObjectRef invoker = frame.getOperandStack().getRefFromTop(
-				new Descriptor(ref.getDescriptor()).getArgsSlotCnt()
+				new Descriptor(ref.getDescriptor(), false).getArgsSlotCnt()
 			);
 			assertNotNull(invoker);
 			Method method = MethodResolver.resolve(invoker.getClassInfo(), ref);
@@ -127,7 +127,7 @@ public class InvokeInstructions {
 			ClassInfo caller = frame.getMethod().getClassInfo();
 			InterfaceMethodref ref = caller.getConstantPool().getInterfaceMethodRef(operand);
 			ObjectRef invoker = frame.getOperandStack().getRefFromTop(
-				new Descriptor(ref.getDescriptor()).getArgsSlotCnt()
+				new Descriptor(ref.getDescriptor(), false).getArgsSlotCnt()
 			);
 			assertNotNull(invoker);
 			Method method = MethodResolver.resolve(invoker.getClassInfo(), ref);

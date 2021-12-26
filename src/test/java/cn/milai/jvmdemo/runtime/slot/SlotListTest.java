@@ -7,6 +7,7 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
+import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.runtime.ObjectRef;
 
 /**
@@ -38,7 +39,7 @@ public class SlotListTest {
 		long var2 = 123456789123L;
 		float var3 = 1234.56f;
 		double var4 = 98765432.1;
-		ObjectRef var5 = new ObjectRef(null, 0);
+		ObjectRef var5 = new ObjectRef(MockFactory.classInfoWithSlotCnt(0));
 		slots.setInt(index, var1);
 		index++;
 		slots.setLong(index, var2);

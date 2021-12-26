@@ -240,7 +240,6 @@ public class ClassInfo {
 		if (superClassInfo != null) {
 			superClassInfo.init(thread);
 		}
-		return;
 	}
 
 	public String getName() { return name; }

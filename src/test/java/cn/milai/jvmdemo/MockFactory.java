@@ -5,6 +5,9 @@ import static org.mockito.Mockito.when;
 
 import cn.milai.jvmdemo.runtime.ClassInfo;
 import cn.milai.jvmdemo.runtime.Method;
+import cn.milai.jvmdemo.runtime.stack.Frame;
+import cn.milai.jvmdemo.runtime.stack.LocalVarsTable;
+import cn.milai.jvmdemo.runtime.stack.OperandStack;
 
 /**
  * Mock 工厂测试工具类
@@ -36,7 +39,22 @@ public class MockFactory {
 	private static Method newMethod() {
 		Method method = mock(Method.class);
 		when(method.getClassInfo()).thenReturn(MOCK_CLASS_INFO);
+		when(method.getCodes()).thenReturn(new byte[0]);
 		return method;
+	}
+
+	public static ClassInfo classInfoWithSlotCnt(int instanceSlotCnt) {
+		ClassInfo c = mock(ClassInfo.class);
+		when(c.getInstanceSlotCnt()).thenReturn(instanceSlotCnt);
+		return c;
+	}
+
+	public static Frame newFrame(OperandStack s, LocalVarsTable t, Method m) {
+		Frame frame = mock(Frame.class);
+		when(frame.getOperandStack()).thenReturn(s);
+		when(frame.getLocalVarsTable()).thenReturn(t);
+		when(frame.getMethod()).thenReturn(m);
+		return frame;
 	}
 
 }

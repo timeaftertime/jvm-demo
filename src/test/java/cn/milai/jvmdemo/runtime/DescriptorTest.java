@@ -14,17 +14,19 @@ public class DescriptorTest {
 
 	@Test
 	public void testParse() {
-		Descriptor d1 = new Descriptor("(Ljava/lang/String;)V");
+		Descriptor d1 = new Descriptor("(Ljava/lang/String;)V", true);
 		assertEquals("V", d1.getReturnType());
 		assertEquals(1, d1.getArgsSlotCnt());
 		assertArrayEquals(new String[] { "Ljava/lang/String;" }, d1.getArgsType());
-		Descriptor d2 = new Descriptor("()I");
+		Descriptor d2 = new Descriptor("()I", true);
 		assertEquals("I", d2.getReturnType());
 		assertEquals(0, d2.getArgsSlotCnt());
 		assertArrayEquals(new String[] {}, d2.getArgsType());
-		Descriptor d3 = new Descriptor("(DI)V");
+		Descriptor d3 = new Descriptor("(DI)V", true);
 		assertEquals("V", d3.getReturnType());
 		assertEquals(3, d3.getArgsSlotCnt());
 		assertArrayEquals(new String[] { "D", "I" }, d3.getArgsType());
+		Descriptor d4 = new Descriptor("(DI)V", false);
+		assertEquals(d3.getArgsSlotCnt() + 1, d4.getArgsSlotCnt());
 	}
 }

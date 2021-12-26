@@ -17,7 +17,7 @@ public class Method extends Member {
 
 	public Method(ClassInfo owner, ClassMember member, RTConstantPool pool) {
 		super(owner, member, pool);
-		descriptor = new Descriptor(getDescriptor());
+		descriptor = new Descriptor(getDescriptor(), isStatic());
 		parseCodeAttribute(member);
 	}
 
