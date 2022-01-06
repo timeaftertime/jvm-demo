@@ -1,7 +1,6 @@
 package cn.milai.jvmdemo.runtime;
 
 import cn.milai.jvmdemo.ClassInfoLoader;
-import cn.milai.jvmdemo.DefaultClassInfoLoader;
 import cn.milai.jvmdemo.classfile.AccessMask;
 import cn.milai.jvmdemo.classfile.ClassMetadata;
 import cn.milai.jvmdemo.classfile.TypeDesc;
@@ -9,6 +8,8 @@ import cn.milai.jvmdemo.classfile.attribute.Attribute;
 import cn.milai.jvmdemo.classfile.attribute.SourceFileAttribute;
 import cn.milai.jvmdemo.classfile.constant.ClassConstant;
 import cn.milai.jvmdemo.classfile.constant.ConstantPool;
+import cn.milai.jvmdemo.constants.ClassConst;
+import cn.milai.jvmdemo.constants.MethodConst;
 import cn.milai.jvmdemo.util.ClassNames;
 
 /**
@@ -18,7 +19,7 @@ import cn.milai.jvmdemo.util.ClassNames;
  */
 public class ClassInfo {
 
-	private DefaultClassInfoLoader loader;
+	private ClassInfoLoader loader;
 	private ClassInfo superClassInfo;
 	private ClassInfo[] interfacesClassInfo;
 
@@ -39,8 +40,12 @@ public class ClassInfo {
 
 	private boolean initialized;
 
-	public ClassInfo(ClassMetadata metadata, DefaultClassInfoLoader loader) {
+	private ClassInfo(ClassInfoLoader loader) {
 		this.loader = loader;
+	}
+
+	public ClassInfo(ClassMetadata metadata, ClassInfoLoader loader) {
+		this(loader);
 		parseConstantPool(metadata);
 		parseClassName(metadata);
 		parseSuperClassName(metadata);
@@ -51,6 +56,30 @@ public class ClassInfo {
 		parseSourceFileName(metadata, pool);
 		resolveSuperAndInterface();
 		allocateSlots();
+	}
+
+	public static ClassInfo array(String arrayClass, ClassInfoLoader loader) {
+		ClassInfo c = new ClassInfo(loader);
+		if (!ClassConst.isArray(arrayClass)) {
+			throw new IllegalArgumentException("该类不是数组类型:" + arrayClass);
+		}
+		c.loader = loader;
+		c.access = new AccessMask(AccessMask.ACC_PUBLIC);
+		c.name = arrayClass;
+		c.superName = ClassConst.OBJECT;
+		c.interfacesName = new String[] { ClassConst.SERIALIZABLE, ClassConst.CLONEABLE };
+		c.resolveSuperAndInterface();
+		return c;
+	}
+
+	public static ClassInfo primitive(String primitiveClass, ClassInfoLoader loader) {
+		ClassInfo c = new ClassInfo(loader);
+		if (!ClassConst.isPrimitive(primitiveClass)) {
+			throw new IllegalArgumentException("该类不是原始类型:" + primitiveClass);
+		}
+		c.access = new AccessMask(AccessMask.ACC_PUBLIC);
+		c.name = primitiveClass;
+		return c;
 	}
 
 	private void allocateSlots() {
@@ -241,6 +270,12 @@ public class ClassInfo {
 			superClassInfo.init(thread);
 		}
 	}
+
+	/**
+	 * 当前类是否为数组类
+	 * @return
+	 */
+	public boolean isArray() { return ClassConst.isArray(name); }
 
 	public String getName() { return name; }
 

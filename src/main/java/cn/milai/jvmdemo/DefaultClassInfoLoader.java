@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import cn.milai.jvmdemo.classfile.ClassMetadata;
+import cn.milai.jvmdemo.constants.ClassConst;
 import cn.milai.jvmdemo.runtime.ClassInfo;
 import cn.milai.jvmdemo.util.ClassNames;
 
@@ -47,6 +48,13 @@ public final class DefaultClassInfoLoader implements ClassInfoLoader {
 		}
 		INSTANCE = new DefaultClassInfoLoader();
 		INSTANCE.classPaths = new ArrayList<>(classPaths);
+		INSTANCE.loadPrimitiveClasses();
+	}
+
+	private void loadPrimitiveClasses() {
+		for (String desc : ClassConst.PRIMITIVE_DESCRIPTORS) {
+			loaded.put(desc, ClassInfo.primitive(ClassConst.findPrimitive(desc), this));
+		}
 	}
 
 	public static DefaultClassInfoLoader getInstance() {
@@ -61,6 +69,9 @@ public final class DefaultClassInfoLoader implements ClassInfoLoader {
 	}
 
 	private ClassInfo doLoad(String name) {
+		if (ClassConst.isArray(name)) {
+			return ClassInfo.array(ClassNames.fromSlash(name), this);
+		}
 		// Bootstrap ClassLoader
 		ClassInfo classInfo = loadFromJars(LIB_PATH, name);
 		// Extension ClassLoader

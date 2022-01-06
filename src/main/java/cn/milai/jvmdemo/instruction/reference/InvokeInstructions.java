@@ -2,6 +2,7 @@ package cn.milai.jvmdemo.instruction.reference;
 
 import java.io.IOException;
 
+import cn.milai.jvmdemo.constants.MethodConst;
 import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.runtime.AbstractMethodRef;
@@ -9,7 +10,6 @@ import cn.milai.jvmdemo.runtime.ClassInfo;
 import cn.milai.jvmdemo.runtime.Descriptor;
 import cn.milai.jvmdemo.runtime.InterfaceMethodref;
 import cn.milai.jvmdemo.runtime.Method;
-import cn.milai.jvmdemo.runtime.MethodConst;
 import cn.milai.jvmdemo.runtime.MethodRef;
 import cn.milai.jvmdemo.runtime.MethodResolver;
 import cn.milai.jvmdemo.runtime.ObjectRef;

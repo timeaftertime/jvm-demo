@@ -58,6 +58,14 @@ import cn.milai.jvmdemo.instruction.conversion.I2XInstructions.I2L;
 import cn.milai.jvmdemo.instruction.conversion.L2XInstructions.L2D;
 import cn.milai.jvmdemo.instruction.conversion.L2XInstructions.L2F;
 import cn.milai.jvmdemo.instruction.conversion.L2XInstructions.L2I;
+import cn.milai.jvmdemo.instruction.load.ALoadInstructions.AALOAD;
+import cn.milai.jvmdemo.instruction.load.ALoadInstructions.BALOAD;
+import cn.milai.jvmdemo.instruction.load.ALoadInstructions.CALOAD;
+import cn.milai.jvmdemo.instruction.load.ALoadInstructions.DALOAD;
+import cn.milai.jvmdemo.instruction.load.ALoadInstructions.FALOAD;
+import cn.milai.jvmdemo.instruction.load.ALoadInstructions.IALOAD;
+import cn.milai.jvmdemo.instruction.load.ALoadInstructions.LALOAD;
+import cn.milai.jvmdemo.instruction.load.ALoadInstructions.SALOAD;
 import cn.milai.jvmdemo.instruction.load.LoadInstructions.ALOAD;
 import cn.milai.jvmdemo.instruction.load.LoadInstructions.ALOAD_0;
 import cn.milai.jvmdemo.instruction.load.LoadInstructions.ALOAD_1;
@@ -130,6 +138,14 @@ import cn.milai.jvmdemo.instruction.stack.DupInstructions.DUP_X2;
 import cn.milai.jvmdemo.instruction.stack.PopInstructions.POP;
 import cn.milai.jvmdemo.instruction.stack.PopInstructions.POP2;
 import cn.milai.jvmdemo.instruction.stack.Swap;
+import cn.milai.jvmdemo.instruction.store.AStoreInstructions.AASTORE;
+import cn.milai.jvmdemo.instruction.store.AStoreInstructions.BASTORE;
+import cn.milai.jvmdemo.instruction.store.AStoreInstructions.CASTORE;
+import cn.milai.jvmdemo.instruction.store.AStoreInstructions.DASTORE;
+import cn.milai.jvmdemo.instruction.store.AStoreInstructions.FASTORE;
+import cn.milai.jvmdemo.instruction.store.AStoreInstructions.IASTORE;
+import cn.milai.jvmdemo.instruction.store.AStoreInstructions.LASTORE;
+import cn.milai.jvmdemo.instruction.store.AStoreInstructions.SASTORE;
 import cn.milai.jvmdemo.instruction.store.StoreInstructions.DSTORE;
 import cn.milai.jvmdemo.instruction.store.StoreInstructions.DSTORE_0;
 import cn.milai.jvmdemo.instruction.store.StoreInstructions.DSTORE_1;
@@ -198,6 +214,39 @@ public class InstructionFactory {
 	public static final Instruction I_ALOAD_1 = new ALOAD_1();
 	public static final Instruction I_ALOAD_2 = new ALOAD_2();
 	public static final Instruction I_ALOAD_3 = new ALOAD_3();
+	public static final Instruction I_IALOAD = new IALOAD();
+	public static final Instruction I_LALOAD = new LALOAD();
+	public static final Instruction I_FALOAD = new FALOAD();
+	public static final Instruction I_DALOAD = new DALOAD();
+	public static final Instruction I_AALOAD = new AALOAD();
+	public static final Instruction I_BALOAD = new BALOAD();
+	public static final Instruction I_CALOAD = new CALOAD();
+	public static final Instruction I_SALOAD = new SALOAD();
+
+	public static final Instruction I_ISTORE_0 = new ISTORE_0();
+	public static final Instruction I_ISTORE_1 = new ISTORE_1();
+	public static final Instruction I_ISTORE_2 = new ISTORE_2();
+	public static final Instruction I_ISTORE_3 = new ISTORE_3();
+	public static final Instruction I_LSTORE_0 = new LSTORE_0();
+	public static final Instruction I_LSTORE_1 = new LSTORE_1();
+	public static final Instruction I_LSTORE_2 = new LSTORE_2();
+	public static final Instruction I_LSTORE_3 = new LSTORE_3();
+	public static final Instruction I_FSTORE_0 = new FSTORE_0();
+	public static final Instruction I_FSTORE_1 = new FSTORE_1();
+	public static final Instruction I_FSTORE_2 = new FSTORE_2();
+	public static final Instruction I_FSTORE_3 = new FSTORE_3();
+	public static final Instruction I_DSTORE_0 = new DSTORE_0();
+	public static final Instruction I_DSTORE_1 = new DSTORE_1();
+	public static final Instruction I_DSTORE_2 = new DSTORE_2();
+	public static final Instruction I_DSTORE_3 = new DSTORE_3();
+	public static final Instruction I_IASTORE = new IASTORE();
+	public static final Instruction I_LASTORE = new LASTORE();
+	public static final Instruction I_FASTORE = new FASTORE();
+	public static final Instruction I_DASTORE = new DASTORE();
+	public static final Instruction I_AASTORE = new AASTORE();
+	public static final Instruction I_BASTORE = new BASTORE();
+	public static final Instruction I_CASTORE = new CASTORE();
+	public static final Instruction I_SASTORE = new SASTORE();
 
 	public static final Instruction I_POP = new POP();
 	public static final Instruction I_POP2 = new POP2();
@@ -371,6 +420,22 @@ public class InstructionFactory {
 				return I_DLOAD_2;
 			case DLOAD_3 :
 				return I_DLOAD_3;
+			case IALOAD :
+				return I_IALOAD;
+			case LALOAD :
+				return I_LALOAD;
+			case FALOAD :
+				return I_FALOAD;
+			case DALOAD :
+				return I_DALOAD;
+			case AALOAD :
+				return I_AALOAD;
+			case BALOAD :
+				return I_BALOAD;
+			case CALOAD :
+				return I_CALOAD;
+			case SALOAD :
+				return I_SALOAD;
 
 			case ISTORE :
 				return new ISTORE();
@@ -381,37 +446,53 @@ public class InstructionFactory {
 			case DSTORE :
 				return new DSTORE();
 			case ISTORE_0 :
-				return new ISTORE_0();
+				return I_ISTORE_0;
 			case ISTORE_1 :
-				return new ISTORE_1();
+				return I_ISTORE_1;
 			case ISTORE_2 :
-				return new ISTORE_2();
+				return I_ISTORE_2;
 			case ISTORE_3 :
-				return new ISTORE_3();
+				return I_ISTORE_3;
 			case LSTORE_0 :
-				return new LSTORE_0();
+				return I_LSTORE_0;
 			case LSTORE_1 :
-				return new LSTORE_1();
+				return I_LSTORE_1;
 			case LSTORE_2 :
-				return new LSTORE_2();
+				return I_LSTORE_2;
 			case LSTORE_3 :
-				return new LSTORE_3();
+				return I_LSTORE_3;
 			case FSTORE_0 :
-				return new FSTORE_0();
+				return I_FSTORE_0;
 			case FSTORE_1 :
-				return new FSTORE_1();
+				return I_FSTORE_1;
 			case FSTORE_2 :
-				return new FSTORE_2();
+				return I_FSTORE_2;
 			case FSTORE_3 :
-				return new FSTORE_3();
+				return I_FSTORE_3;
 			case DSTORE_0 :
-				return new DSTORE_0();
+				return I_DSTORE_0;
 			case DSTORE_1 :
-				return new DSTORE_1();
+				return I_DSTORE_1;
 			case DSTORE_2 :
-				return new DSTORE_2();
+				return I_DSTORE_2;
 			case DSTORE_3 :
-				return new DSTORE_3();
+				return I_DSTORE_3;
+			case IASTORE :
+				return I_IASTORE;
+			case LASTORE :
+				return I_LASTORE;
+			case FASTORE :
+				return I_FASTORE;
+			case DASTORE :
+				return I_DASTORE;
+			case AASTORE :
+				return I_AASTORE;
+			case BASTORE :
+				return I_BASTORE;
+			case CASTORE :
+				return I_CASTORE;
+			case SASTORE :
+				return I_SASTORE;
 
 			case POP :
 				return I_POP;

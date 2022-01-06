@@ -7,6 +7,7 @@ import static org.junit.Assert.assertSame;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import cn.milai.jvmdemo.constants.ClassConst;
 import cn.milai.jvmdemo.runtime.ClassInfo;
 
 /**
@@ -44,6 +45,14 @@ public class DefaultClassInfoLoaderTest {
 	@Test
 	public void testLoadSame() {
 		assertSame(loader.load(Classes.COMPARABLE), loader.load(Classes.COMPARABLE));
+	}
+
+	@Test
+	public void testLoadArray() {
+		ClassInfo comparableArray = loader.load("[" + Classes.COMPARABLE);
+		assertNotNull(comparableArray);
+		assertEquals(ClassConst.ARRAY_PREFIX + Classes.COMPARABLE, comparableArray.getName());
+		assertEquals(Classes.OBJECT, comparableArray.getSuperClassInfo().getName());
 	}
 
 }

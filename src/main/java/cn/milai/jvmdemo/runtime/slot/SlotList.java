@@ -34,7 +34,10 @@ public abstract class SlotList {
 	}
 
 	protected void setDouble(int index, double value) {
-		setLong(index, Double.doubleToRawLongBits(value));
+		long v = Double.doubleToRawLongBits(value);
+		accessIndexCheck(index, 1);
+		setInt(index, (int) (v >> 32));
+		setInt(index + 1, (int) v);
 	}
 
 	protected void setRef(int index, ObjectRef ref) {
@@ -62,7 +65,9 @@ public abstract class SlotList {
 	}
 
 	protected double getDouble(int index) {
-		return Double.longBitsToDouble(getLong(index));
+		accessIndexCheck(index, 1);
+		long v = ((long) getInt(index) << 32) | (getInt(index + 1) & 0xFFFFFFFFL);
+		return Double.longBitsToDouble(v);
 	}
 
 	private void accessIndexCheck(int startIndex, int extraSpace) {

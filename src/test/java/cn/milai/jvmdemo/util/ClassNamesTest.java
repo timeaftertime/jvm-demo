@@ -1,8 +1,12 @@
 package cn.milai.jvmdemo.util;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import cn.milai.jvmdemo.constants.ClassConst;
 
 /**
  * {@link ClassNames} 测试类
@@ -32,4 +36,13 @@ public class ClassNamesTest {
 		assertEquals("java/lang/Comparable", ClassNames.toSlash("java.lang.Comparable"));
 		assertEquals("java/lang/String", ClassNames.toSlash("java.lang.String"));
 	}
+
+	@Test
+	public void testIsArray() {
+		assertTrue(ClassConst.isArray("[java.lang.Object"));
+		assertTrue(ClassConst.isArray("[[java.lang.String"));
+		assertFalse(ClassConst.isArray("java.lang.Object"));
+		assertFalse(ClassConst.isArray(null));
+	}
+	
 }

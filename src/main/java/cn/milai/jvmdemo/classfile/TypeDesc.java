@@ -21,7 +21,7 @@ public enum TypeDesc {
 	REF("L");
 
 	private String value;
-
+	
 	TypeDesc(String value) {
 		this.value = value;
 	}

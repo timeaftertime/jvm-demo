@@ -27,4 +27,5 @@ public class ClassNames {
 	public static String toSlash(String dotClassName) {
 		return dotClassName.replace(".", "/");
 	}
+
 }

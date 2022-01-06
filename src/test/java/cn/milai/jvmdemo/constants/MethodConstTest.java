@@ -1,4 +1,4 @@
-package cn.milai.jvmdemo.runtime;
+package cn.milai.jvmdemo.constants;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

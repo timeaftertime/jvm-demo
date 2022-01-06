@@ -1,5 +1,7 @@
 package cn.milai.jvmdemo;
 
+import cn.milai.jvmdemo.constants.ClassConst;
+
 /**
  * 类名常量类
  * @author milai
@@ -32,7 +34,7 @@ public class Classes {
 
 	public static final String CALL_METHODS = "cn.milai.jvmdemo.instruction.CallMethods";
 
-	public static final String OBJECT = "java.lang.Object";
+	public static final String OBJECT = ClassConst.OBJECT;
 
 	public static final String COMPARATOR = "java.util.Comparator";
 
@@ -42,7 +44,7 @@ public class Classes {
 
 	public static final String SERIABLIZABLE = "java.io.Serializable";
 
-	public static final String STRING = "java.lang.String";
+	public static final String STRING = ClassConst.STRING;
 
 	public static final String STRING_BUILDER = "java.lang.StringBuilder";
 

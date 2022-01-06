@@ -9,6 +9,7 @@ import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
 import cn.milai.jvmdemo.DefaultClassInfoLoaderInitializer;
 import cn.milai.jvmdemo.classfile.TypeDesc;
+import cn.milai.jvmdemo.constants.MethodConst;
 
 /**
  * {@link MethodResolver} 测试类
