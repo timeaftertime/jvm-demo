@@ -23,7 +23,7 @@ public class ParentClassInfoLoaderTest {
 
 	@BeforeClass
 	public static void setUp() {
-		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
+		TestClassInfoLoader.initDefaultClassInfoLoader();
 		loader = new ParentClassInfoLoader() {
 			@Override
 			protected ClassInfo loadClass(String name) {

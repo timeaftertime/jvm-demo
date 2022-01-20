@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import cn.milai.jvmdemo.ClassInfoLoader;
 import cn.milai.jvmdemo.Classes;
-import cn.milai.jvmdemo.DefaultClassInfoLoaderInitializer;
+import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.ParentClassInfoLoader;
 import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
@@ -36,7 +36,7 @@ public class LdcInstructionsTest {
 
 	@Before
 	public void setUp() throws ClassNotFoundException, IOException {
-		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
+		TestClassInfoLoader.initDefaultClassInfoLoader();
 		loader = new ParentClassInfoLoader() {
 			@Override
 			protected ClassInfo loadClass(String name) {

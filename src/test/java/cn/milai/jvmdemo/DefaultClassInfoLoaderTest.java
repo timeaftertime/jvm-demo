@@ -21,7 +21,7 @@ public class DefaultClassInfoLoaderTest {
 
 	@BeforeClass
 	public static void setUp() {
-		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
+		TestClassInfoLoader.initDefaultClassInfoLoader();
 		loader = DefaultClassInfoLoader.getInstance();
 	}
 

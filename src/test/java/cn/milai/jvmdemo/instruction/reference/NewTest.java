@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
-import cn.milai.jvmdemo.DefaultClassInfoLoaderInitializer;
+import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.constants.MethodConst;
 import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
@@ -35,7 +35,7 @@ public class NewTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
+		TestClassInfoLoader.initDefaultClassInfoLoader();
 		info = DefaultClassInfoLoader.getInstance().load(Classes.ADD_TEST);
 	}
 

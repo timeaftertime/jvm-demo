@@ -11,7 +11,7 @@ import org.junit.Test;
 import cn.milai.jvmdemo.ClassInfoLoader;
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
-import cn.milai.jvmdemo.DefaultClassInfoLoaderInitializer;
+import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.constants.MethodConst;
 import cn.milai.jvmdemo.runtime.ClassInfo;
@@ -31,7 +31,7 @@ public class InterpreterTest {
 
 	@BeforeClass
 	public static void init() {
-		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
+		TestClassInfoLoader.initDefaultClassInfoLoader();
 		loader = DefaultClassInfoLoader.getInstance();
 	}
 

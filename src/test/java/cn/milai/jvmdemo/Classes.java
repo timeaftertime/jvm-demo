@@ -34,6 +34,8 @@ public class Classes {
 
 	public static final String CALL_METHODS = "cn.milai.jvmdemo.instruction.CallMethods";
 
+	public static final String PUT_AND_GET_FIELD = "cn.milai.jvmdemo.instruction.PutAndGetField";
+
 	public static final String OBJECT = ClassConst.OBJECT;
 
 	public static final String COMPARATOR = "java.util.Comparator";

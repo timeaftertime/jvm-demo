@@ -7,7 +7,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses(
 	{
-		NewTest.class
+		NewTest.class, AnewArrayTest.class, ArrayLengthTest.class, CheckCastTest.class, InstanceofTest.class,
+		NewArrayTest.class, GetFieldTest.class, GetStaticTest.class, PutFieldTest.class, PutStaticTest.class
 	}
 )
 public class ReferenceTestSuite {

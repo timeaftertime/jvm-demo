@@ -12,7 +12,7 @@ import org.junit.Test;
 import cn.milai.jvmdemo.ClassInfoLoader;
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
-import cn.milai.jvmdemo.DefaultClassInfoLoaderInitializer;
+import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.constants.ClassConst;
 import cn.milai.jvmdemo.instruction.Instruction;
@@ -42,7 +42,7 @@ public class AStoreInstructionsTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
+		TestClassInfoLoader.initDefaultClassInfoLoader();
 		loader = DefaultClassInfoLoader.getInstance();
 	}
 

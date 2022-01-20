@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
-import cn.milai.jvmdemo.DefaultClassInfoLoaderInitializer;
+import cn.milai.jvmdemo.TestClassInfoLoader;
 
 /**
  * {@link SymRef} 测试类
@@ -23,7 +23,7 @@ public class SymRefTest {
 
 	@Before
 	public void setUp() throws ClassNotFoundException, IOException {
-		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
+		TestClassInfoLoader.initDefaultClassInfoLoader();
 		pool = DefaultClassInfoLoader.getInstance().load(Classes.CLASS_TEST).getConstantPool();
 	}
 

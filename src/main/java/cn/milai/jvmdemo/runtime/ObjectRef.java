@@ -58,4 +58,9 @@ public class ObjectRef {
 		return hasDoubleSlot ? elements.getCapacity() / 2 : elements.getCapacity();
 	}
 
+	@Override
+	public String toString() {
+		return String.format("ObjectRef[%s]", classInfo);
+	}
+
 }

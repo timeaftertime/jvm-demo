@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @author milai
  * @date 2021.08.29
  */
-public class DefaultClassInfoLoaderInitializer {
+public class TestClassInfoLoader {
 
 	public static void initDefaultClassInfoLoader() {
 		try {
@@ -17,6 +17,11 @@ public class DefaultClassInfoLoaderInitializer {
 		} catch (IllegalStateException e) {
 			// TODO 日志
 		}
+	}
+
+	public static DefaultClassInfoLoader get() {
+		initDefaultClassInfoLoader();
+		return DefaultClassInfoLoader.getInstance();
 	}
 
 }

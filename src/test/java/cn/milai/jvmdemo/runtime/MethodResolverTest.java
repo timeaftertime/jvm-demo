@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
-import cn.milai.jvmdemo.DefaultClassInfoLoaderInitializer;
+import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.classfile.TypeDesc;
 import cn.milai.jvmdemo.constants.MethodConst;
 
@@ -22,7 +22,7 @@ public class MethodResolverTest {
 
 	@Before
 	public void setUp() {
-		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
+		TestClassInfoLoader.initDefaultClassInfoLoader();
 		child = DefaultClassInfoLoader.getInstance().load(Classes.CHILD);
 	}
 

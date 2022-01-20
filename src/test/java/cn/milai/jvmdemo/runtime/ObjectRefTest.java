@@ -10,7 +10,7 @@ import org.junit.Test;
 import cn.milai.jvmdemo.ClassInfoLoader;
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
-import cn.milai.jvmdemo.DefaultClassInfoLoaderInitializer;
+import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.classfile.TypeDesc;
 import cn.milai.jvmdemo.constants.ClassConst;
 
@@ -25,7 +25,7 @@ public class ObjectRefTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		DefaultClassInfoLoaderInitializer.initDefaultClassInfoLoader();
+		TestClassInfoLoader.initDefaultClassInfoLoader();
 		loader = DefaultClassInfoLoader.getInstance();
 	}
 
