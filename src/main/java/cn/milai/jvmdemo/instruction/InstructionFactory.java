@@ -5,6 +5,8 @@ import cn.milai.jvmdemo.instruction.compare.CmpInstructions.DCMPL;
 import cn.milai.jvmdemo.instruction.compare.CmpInstructions.FCMPG;
 import cn.milai.jvmdemo.instruction.compare.CmpInstructions.FCMPL;
 import cn.milai.jvmdemo.instruction.compare.CmpInstructions.LCMP;
+import cn.milai.jvmdemo.instruction.compare.IfAcmpInstructions.IF_ACMPEQ;
+import cn.milai.jvmdemo.instruction.compare.IfAcmpInstructions.IF_ACMPNE;
 import cn.milai.jvmdemo.instruction.compare.IfIcmpInstructions.IF_ICMPEQ;
 import cn.milai.jvmdemo.instruction.compare.IfIcmpInstructions.IF_ICMPGE;
 import cn.milai.jvmdemo.instruction.compare.IfIcmpInstructions.IF_ICMPGT;
@@ -38,7 +40,8 @@ import cn.milai.jvmdemo.instruction.constant.LdcInstructions.LDC_W;
 import cn.milai.jvmdemo.instruction.constant.NOP;
 import cn.milai.jvmdemo.instruction.constant.PushInstructions.BIPUSH;
 import cn.milai.jvmdemo.instruction.constant.PushInstructions.SIPUSH;
-import cn.milai.jvmdemo.instruction.control.GOTO;
+import cn.milai.jvmdemo.instruction.control.Goto;
+import cn.milai.jvmdemo.instruction.control.ReturnInstructions.ARETURN;
 import cn.milai.jvmdemo.instruction.control.ReturnInstructions.DRETURN;
 import cn.milai.jvmdemo.instruction.control.ReturnInstructions.FRETURN;
 import cn.milai.jvmdemo.instruction.control.ReturnInstructions.IRETURN;
@@ -58,6 +61,11 @@ import cn.milai.jvmdemo.instruction.conversion.I2XInstructions.I2L;
 import cn.milai.jvmdemo.instruction.conversion.L2XInstructions.L2D;
 import cn.milai.jvmdemo.instruction.conversion.L2XInstructions.L2F;
 import cn.milai.jvmdemo.instruction.conversion.L2XInstructions.L2I;
+import cn.milai.jvmdemo.instruction.extended.GotoW;
+import cn.milai.jvmdemo.instruction.extended.IfNullInstructions.IfNonNull;
+import cn.milai.jvmdemo.instruction.extended.IfNullInstructions.IfNull;
+import cn.milai.jvmdemo.instruction.extended.MutilAnewArray;
+import cn.milai.jvmdemo.instruction.extended.Wide;
 import cn.milai.jvmdemo.instruction.load.ALoadInstructions.AALOAD;
 import cn.milai.jvmdemo.instruction.load.ALoadInstructions.BALOAD;
 import cn.milai.jvmdemo.instruction.load.ALoadInstructions.CALOAD;
@@ -124,11 +132,20 @@ import cn.milai.jvmdemo.instruction.math.SubInstructions.ISUB;
 import cn.milai.jvmdemo.instruction.math.SubInstructions.LSUB;
 import cn.milai.jvmdemo.instruction.math.XorInstructions.IXOR;
 import cn.milai.jvmdemo.instruction.math.XorInstructions.LXOR;
-import cn.milai.jvmdemo.instruction.reference.InvokeInstructions.INVOKEINTERFACE;
-import cn.milai.jvmdemo.instruction.reference.InvokeInstructions.INVOKESPECIAL;
-import cn.milai.jvmdemo.instruction.reference.InvokeInstructions.INVOKESTATIC;
-import cn.milai.jvmdemo.instruction.reference.InvokeInstructions.INVOKEVIRTUAL;
+import cn.milai.jvmdemo.instruction.reference.ANewArray;
+import cn.milai.jvmdemo.instruction.reference.ArrayLength;
+import cn.milai.jvmdemo.instruction.reference.CheckCast;
+import cn.milai.jvmdemo.instruction.reference.GetField;
+import cn.milai.jvmdemo.instruction.reference.GetStatic;
+import cn.milai.jvmdemo.instruction.reference.Instanceof;
+import cn.milai.jvmdemo.instruction.reference.InvokeInstructions.InvokeInterface;
+import cn.milai.jvmdemo.instruction.reference.InvokeInstructions.InvokeSpecial;
+import cn.milai.jvmdemo.instruction.reference.InvokeInstructions.InvokeStatic;
+import cn.milai.jvmdemo.instruction.reference.InvokeInstructions.InvokeVirtual;
 import cn.milai.jvmdemo.instruction.reference.New;
+import cn.milai.jvmdemo.instruction.reference.NewArray;
+import cn.milai.jvmdemo.instruction.reference.PutField;
+import cn.milai.jvmdemo.instruction.reference.PutStatic;
 import cn.milai.jvmdemo.instruction.stack.DupInstructions.DUP;
 import cn.milai.jvmdemo.instruction.stack.DupInstructions.DUP2;
 import cn.milai.jvmdemo.instruction.stack.DupInstructions.DUP2_X1;
@@ -146,6 +163,10 @@ import cn.milai.jvmdemo.instruction.store.AStoreInstructions.FASTORE;
 import cn.milai.jvmdemo.instruction.store.AStoreInstructions.IASTORE;
 import cn.milai.jvmdemo.instruction.store.AStoreInstructions.LASTORE;
 import cn.milai.jvmdemo.instruction.store.AStoreInstructions.SASTORE;
+import cn.milai.jvmdemo.instruction.store.StoreInstructions.ASTORE_0;
+import cn.milai.jvmdemo.instruction.store.StoreInstructions.ASTORE_1;
+import cn.milai.jvmdemo.instruction.store.StoreInstructions.ASTORE_2;
+import cn.milai.jvmdemo.instruction.store.StoreInstructions.ASTORE_3;
 import cn.milai.jvmdemo.instruction.store.StoreInstructions.DSTORE;
 import cn.milai.jvmdemo.instruction.store.StoreInstructions.DSTORE_0;
 import cn.milai.jvmdemo.instruction.store.StoreInstructions.DSTORE_1;
@@ -239,6 +260,10 @@ public class InstructionFactory {
 	public static final Instruction I_DSTORE_1 = new DSTORE_1();
 	public static final Instruction I_DSTORE_2 = new DSTORE_2();
 	public static final Instruction I_DSTORE_3 = new DSTORE_3();
+	public static final Instruction I_ASTORE_0 = new ASTORE_0();
+	public static final Instruction I_ASTORE_1 = new ASTORE_1();
+	public static final Instruction I_ASTORE_2 = new ASTORE_2();
+	public static final Instruction I_ASTORE_3 = new ASTORE_3();
 	public static final Instruction I_IASTORE = new IASTORE();
 	public static final Instruction I_LASTORE = new LASTORE();
 	public static final Instruction I_FASTORE = new FASTORE();
@@ -308,6 +333,7 @@ public class InstructionFactory {
 	public static final Instruction I_IRETURN = new IRETURN();
 	public static final Instruction I_LRETURN = new LRETURN();
 	public static final Instruction I_FRETURN = new FRETURN();
+	public static final Instruction I_ARETURN = new ARETURN();
 	public static final Instruction I_DRETURN = new DRETURN();
 
 	public static final Instruction I_LCMP = new LCMP();
@@ -477,6 +503,14 @@ public class InstructionFactory {
 				return I_DSTORE_2;
 			case DSTORE_3 :
 				return I_DSTORE_3;
+			case ASTORE_0 :
+				return I_ASTORE_0;
+			case ASTORE_1 :
+				return I_ASTORE_1;
+			case ASTORE_2 :
+				return I_ASTORE_2;
+			case ASTORE_3 :
+				return I_ASTORE_3;
 			case IASTORE :
 				return I_IASTORE;
 			case LASTORE :
@@ -635,9 +669,42 @@ public class InstructionFactory {
 				return new IF_ICMPGT();
 			case IF_ICMPLE :
 				return new IF_ICMPLE();
+			case IF_ACMPEQ :
+				return new IF_ACMPEQ();
+			case IF_ACMPNE :
+				return new IF_ACMPNE();
+
+			case GETSTATIC :
+				return new GetStatic();
+			case PUTSTATIC :
+				return new PutStatic();
+			case GETFIELD :
+				return new GetField();
+			case PUTFIELD :
+				return new PutField();
+			case INVOKEVIRTUAL :
+				return new InvokeVirtual();
+			case INVOKESPECIAL :
+				return new InvokeSpecial();
+			case INVOKESTATIC :
+				return new InvokeStatic();
+			case INVOKEINTERFACE :
+				return new InvokeInterface();
+			case NEW :
+				return new New();
+			case NEWARRAY :
+				return new NewArray();
+			case ANEWARRAY :
+				return new ANewArray();
+			case ARRAYLENGTH :
+				return new ArrayLength();
+			case CHECKCAST :
+				return new CheckCast();
+			case INSTANCEOF :
+				return new Instanceof();
 
 			case GOTO :
-				return new GOTO();
+				return new Goto();
 			case TABLESWITCH :
 				return new TABLESWITCH();
 			case LOOKUPSWITCH :
@@ -650,19 +717,21 @@ public class InstructionFactory {
 				return I_FRETURN;
 			case DRETURN :
 				return I_DRETURN;
+			case ARETURN :
+				return I_ARETURN;
 			case RETURN :
 				return I_RETURN;
 
-			case INVOKEVIRTUAL :
-				return new INVOKEVIRTUAL();
-			case INVOKESPECIAL :
-				return new INVOKESPECIAL();
-			case INVOKESTATIC :
-				return new INVOKESTATIC();
-			case INVOKEINTERFACE :
-				return new INVOKEINTERFACE();
-			case NEW :
-				return new New();
+			case WIDE :
+				return new Wide();
+			case MULTIANEWARRAY :
+				return new MutilAnewArray();
+			case IFNULL :
+				return new IfNull();
+			case IFNONNULL :
+				return new IfNonNull();
+			case GOTO_W :
+				return new GotoW();
 
 			default:
 				throw new IllegalArgumentException("未实现指令类型: " + op);

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
+import cn.milai.jvmdemo.instruction.OneOperandInstruction;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 
 /**
@@ -193,9 +194,7 @@ public class StoreInstructions {
 
 	}
 
-	private static abstract class XSTORE implements Instruction {
-		protected int operand;
-
+	private static abstract class XSTORE extends OneOperandInstruction {
 		@Override
 		public void readOperands(BytecodeReader reader) throws IOException {
 			operand = reader.readUint8();

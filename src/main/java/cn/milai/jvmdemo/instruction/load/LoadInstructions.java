@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
+import cn.milai.jvmdemo.instruction.OneOperandInstruction;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 
 /**
@@ -193,9 +194,7 @@ public class LoadInstructions {
 
 	}
 
-	private static abstract class XLOAD implements Instruction {
-		protected int operand;
-
+	private static abstract class XLOAD extends OneOperandInstruction {
 		@Override
 		public final void readOperands(BytecodeReader reader) throws IOException {
 			operand = readOperand(reader);

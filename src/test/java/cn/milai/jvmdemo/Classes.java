@@ -36,6 +36,10 @@ public class Classes {
 
 	public static final String PUT_AND_GET_FIELD = "cn.milai.jvmdemo.instruction.PutAndGetField";
 
+	public static final String ARRAY_TEST = "cn.milai.jvmdemo.instruction.ArrayTest";
+
+	public static final String CALCULATOR = "cn.milai.jvmdemo.instruction.Calculator";
+
 	public static final String OBJECT = ClassConst.OBJECT;
 
 	public static final String COMPARATOR = "java.util.Comparator";

@@ -57,7 +57,7 @@ public class InvokeInstructions {
 		}
 	}
 
-	public static class INVOKESTATIC extends InvokeInstruction {
+	public static class InvokeStatic extends InvokeInstruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -70,7 +70,7 @@ public class InvokeInstructions {
 
 	}
 
-	public static class INVOKESPECIAL extends InvokeInstruction {
+	public static class InvokeSpecial extends InvokeInstruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -94,7 +94,7 @@ public class InvokeInstructions {
 
 	}
 
-	public static class INVOKEVIRTUAL extends InvokeInstruction {
+	public static class InvokeVirtual extends InvokeInstruction {
 
 		@Override
 		public void execute(Frame frame) {
@@ -111,7 +111,7 @@ public class InvokeInstructions {
 
 	}
 
-	public static class INVOKEINTERFACE implements Instruction {
+	public static class InvokeInterface implements Instruction {
 
 		private int operand;
 

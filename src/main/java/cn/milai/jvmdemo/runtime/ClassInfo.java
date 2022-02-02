@@ -82,6 +82,14 @@ public class ClassInfo {
 		return c;
 	}
 
+	/**
+	 * 获取当前数组类的元素类型
+	 * @return
+	 */
+	public ClassInfo element() {
+		return loader.load(ClassConst.elementClassNameOf(name));
+	}
+
 	private void allocateSlots() {
 		calculateSlotIds();
 		initStaticSlots();

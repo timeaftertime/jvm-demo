@@ -1,4 +1,4 @@
-package cn.milai.jvmdemo.instruction.control;
+package cn.milai.jvmdemo.instruction.extended;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,22 +14,22 @@ import cn.milai.jvmdemo.runtime.ThreadSpace;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 
 /**
- * {@link Goto} 测试类
+ * goto_w 指令
  * @author milai
- * @date 2021.12.02
+ * @date 2022.02.01
  */
-public class GotoTest {
+public class GotoWTest {
 
-	private Instruction gotoIns;
+	private Instruction gotoW;
 	private static final int MAX_LOCAL_VARS_TABLE_CAPACITY = 7;
 	private static final int MAX_OPERAND_STACK_CAPACITY = 16;
 	private Frame frame;
 	private BytecodeReader reader;
-	private byte[] codes = new byte[] { 0, 20 };
+	private byte[] codes = new byte[] { 0, 0, 0, 20 };
 
 	@Before
 	public void setUp() {
-		gotoIns = new Goto();
+		gotoW = new GotoW();
 		frame = new Frame(
 			new ThreadSpace(),
 			MockFactory.newMethod(MAX_LOCAL_VARS_TABLE_CAPACITY, MAX_OPERAND_STACK_CAPACITY)
@@ -39,9 +39,9 @@ public class GotoTest {
 
 	@Test
 	public void readOperandsAndExecute() throws IOException {
-		gotoIns.readOperands(reader);
-		assertEquals(2, reader.getPC());
-		gotoIns.execute(frame);
+		gotoW.readOperands(reader);
+		assertEquals(4, reader.getPC());
+		gotoW.execute(frame);
 		assertEquals(20, frame.getThreadSpace().getPC());
 	}
 

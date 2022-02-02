@@ -15,7 +15,17 @@ public abstract class BranchInstruction implements Instruction {
 
 	@Override
 	public void readOperands(BytecodeReader reader) throws IOException {
-		operand = reader.readInt16();
+		operand = readOffset(reader);
+	}
+
+	/**
+	 * 读取并返回跳转偏移量
+	 * @param reader
+	 * @return
+	 * @throws IOException
+	 */
+	protected int readOffset(BytecodeReader reader) throws IOException {
+		return reader.readInt16();
 	}
 
 	@Override
@@ -30,6 +40,8 @@ public abstract class BranchInstruction implements Instruction {
 	 * @param frame
 	 * @return
 	 */
-	protected abstract boolean fitCondition(Frame frame);
+	protected boolean fitCondition(Frame frame) {
+		return true;
+	}
 
 }

@@ -11,8 +11,8 @@ import org.junit.Test;
 import cn.milai.jvmdemo.ClassInfoLoader;
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
-import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.MockFactory;
+import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.constants.MethodConst;
 import cn.milai.jvmdemo.runtime.ClassInfo;
 import cn.milai.jvmdemo.runtime.ObjectRef;
@@ -99,6 +99,14 @@ public class InterpreterTest {
 			frame = executeMethod(frame, Classes.CALL_METHODS, "call", "(II)D", false);
 			assertEquals(0, frame.getOperandStack().popDouble(), 0.1);
 		}
+	}
+
+	@Test
+	public void testCalculator() throws EmptyStackException, IOException {
+		Frame mockFrame = executeMethod(Classes.CALCULATOR, "testEntry", "()[J", true);
+		ObjectRef res = mockFrame.getOperandStack().popRef();
+		assertEquals(5060, res.getElements().getLong(0));
+		assertEquals(5060, res.getElements().getLong(1));
 	}
 
 }
