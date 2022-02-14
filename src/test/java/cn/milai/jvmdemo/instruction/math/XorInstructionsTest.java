@@ -7,11 +7,11 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.math.XorInstructions.IXOR;
 import cn.milai.jvmdemo.instruction.math.XorInstructions.LXOR;
 import cn.milai.jvmdemo.runtime.stack.Frame;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link XorInstructions} 测试类

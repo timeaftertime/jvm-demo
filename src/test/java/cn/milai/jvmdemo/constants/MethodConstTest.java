@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link MethodConst} 测试类

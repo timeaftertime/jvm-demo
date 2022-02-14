@@ -8,7 +8,6 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.store.StoreInstructions.ASTORE;
@@ -38,6 +37,7 @@ import cn.milai.jvmdemo.instruction.store.StoreInstructions.LSTORE_2;
 import cn.milai.jvmdemo.instruction.store.StoreInstructions.LSTORE_3;
 import cn.milai.jvmdemo.runtime.ObjectRef;
 import cn.milai.jvmdemo.runtime.stack.Frame;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link StoreInstructions} 测试类

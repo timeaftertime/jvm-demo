@@ -13,7 +13,6 @@ import cn.milai.jvmdemo.ClassInfoLoader;
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
 import cn.milai.jvmdemo.TestClassInfoLoader;
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.constants.ClassConst;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.store.AStoreInstructions.AASTORE;
@@ -28,6 +27,7 @@ import cn.milai.jvmdemo.runtime.ObjectRef;
 import cn.milai.jvmdemo.runtime.ThreadSpace;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 import cn.milai.jvmdemo.runtime.stack.OperandStack;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link AStoreInstructions} 测试类

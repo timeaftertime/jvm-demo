@@ -83,7 +83,7 @@ public class ClassInfoTest {
 		assertEquals(9, main.getCodes().length);
 		assertEquals(1, main.getArgsSlotCnt());
 
-		Method init = hello.getMethod("<init>", "()V", true);
+		Method init = hello.getMethod("<init>", "()V", false);
 		assertTrue(init.isPublic());
 		assertFalse(init.isStatic());
 		assertEquals(TypeDesc.VOID.getValue(), init.getReturnType());

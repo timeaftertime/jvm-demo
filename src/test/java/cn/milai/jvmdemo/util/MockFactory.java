@@ -1,4 +1,4 @@
-package cn.milai.jvmdemo;
+package cn.milai.jvmdemo.util;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -34,6 +34,21 @@ public class MockFactory {
 		Method method = newMethod();
 		when(method.getName()).thenReturn(name);
 		return method;
+	}
+
+	public static Method newMethod(String className, String name, String descriptor) {
+		Method method = mock(Method.class);
+		when(method.getName()).thenReturn(name);
+		when(method.getDescriptor()).thenReturn(descriptor);
+		ClassInfo info = newClassInfo(className);
+		when(method.getClassInfo()).thenReturn(info);
+		return method;
+	}
+
+	public static ClassInfo newClassInfo(String name) {
+		ClassInfo classInfo = mock(ClassInfo.class);
+		when(classInfo.getName()).thenReturn(name);
+		return classInfo;
 	}
 
 	private static Method newMethod() {

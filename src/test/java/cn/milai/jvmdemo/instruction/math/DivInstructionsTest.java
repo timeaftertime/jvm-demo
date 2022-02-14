@@ -9,13 +9,13 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.math.DivInstructions.DDIV;
 import cn.milai.jvmdemo.instruction.math.DivInstructions.FDIV;
 import cn.milai.jvmdemo.instruction.math.DivInstructions.IDIV;
 import cn.milai.jvmdemo.instruction.math.DivInstructions.LDIV;
 import cn.milai.jvmdemo.runtime.stack.Frame;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link DivInstructions} 测试类

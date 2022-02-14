@@ -8,13 +8,13 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.runtime.ThreadSpace;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 import cn.milai.jvmdemo.runtime.stack.LocalVarsTable;
 import cn.milai.jvmdemo.runtime.stack.OperandStack;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link Wide} 测试类

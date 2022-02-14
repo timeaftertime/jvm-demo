@@ -21,7 +21,7 @@ public enum TypeDesc {
 	REF("L");
 
 	private String value;
-	
+
 	TypeDesc(String value) {
 		this.value = value;
 	}
@@ -48,6 +48,12 @@ public enum TypeDesc {
 		}
 		throw new IllegalArgumentException("未知类型描述:" + desc);
 	}
+
+	/**
+	 * 获取是否为基础类型
+	 * @return
+	 */
+	public boolean isPrimitive() { return this != ARRAY && this != REF; }
 
 	/**
 	 * 当前类型是否需要 2 个相邻 slot

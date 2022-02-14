@@ -327,7 +327,8 @@ public class ClassInfo {
 
 	public Method getMethod(String name, String descriptor, boolean isStatic) {
 		for (Method method : methods) {
-			if (method.getName().equals(name) && method.getDescriptor().equals(descriptor)) {
+			if (method.getName().equals(name) && method.getDescriptor().equals(descriptor) && method
+				.isStatic() == isStatic) {
 				return method;
 			}
 		}

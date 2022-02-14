@@ -7,12 +7,12 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.conversion.D2XInstructions.D2F;
 import cn.milai.jvmdemo.instruction.conversion.D2XInstructions.D2I;
 import cn.milai.jvmdemo.instruction.conversion.D2XInstructions.D2L;
 import cn.milai.jvmdemo.runtime.stack.Frame;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link D2XInstructions} 测试类

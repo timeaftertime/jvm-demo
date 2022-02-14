@@ -2,6 +2,7 @@ package cn.milai.jvmdemo.instruction;
 
 import java.io.EOFException;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * 字节数组读取器
@@ -58,7 +59,7 @@ public class BytecodeReader {
 		this.codes = codes;
 		this.pc = pc;
 	}
-	
+
 	public void skipPadding(int padding) throws IOException {
 		if (padding == 0) {
 			return;
@@ -66,5 +67,10 @@ public class BytecodeReader {
 		while (getPC() % padding != 0) {
 			readInt8();
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "pc = " + pc + ", " + Arrays.toString(codes);
 	}
 }

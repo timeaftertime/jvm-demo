@@ -9,9 +9,9 @@ import java.util.EmptyStackException;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.runtime.ObjectRef;
 import cn.milai.jvmdemo.runtime.slot.Slot;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link OperandStack} 测试类

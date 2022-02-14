@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import cn.milai.jvmdemo.classfile.TypeDesc;
+import cn.milai.jvmdemo.runtime.ClassInfo;
 
 /**
  * 类相关常量
@@ -42,6 +43,8 @@ public class ClassConst {
 		TypeDesc.SHORT.getValue(), TypeDesc.INT.getValue(), TypeDesc.LONG.getValue(), TypeDesc.FLOAT.getValue(),
 		TypeDesc.DOUBLE.getValue()
 	);
+
+	public static final String SYSTEM = "java.lang.System";
 
 	public static final String OBJECT = "java.lang.Object";
 
@@ -106,7 +109,16 @@ public class ClassConst {
 	}
 
 	/**
-	 * 获取数组类的元素类型
+	 * 获取指定 {@link ClassInfo} 的元素类型名
+	 * @param c
+	 * @return
+	 */
+	public static String elementClassNameOf(ClassInfo c) {
+		return elementClassNameOf(c.getName());
+	}
+
+	/**
+	 * 获取数组类的元素类型名
 	 * @param arrayClassName
 	 * @return
 	 */

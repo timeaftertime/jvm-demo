@@ -9,13 +9,13 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.math.RemInstructions.DREM;
 import cn.milai.jvmdemo.instruction.math.RemInstructions.FREM;
 import cn.milai.jvmdemo.instruction.math.RemInstructions.IREM;
 import cn.milai.jvmdemo.instruction.math.RemInstructions.LREM;
 import cn.milai.jvmdemo.runtime.stack.Frame;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link RemInstructions} 测试类

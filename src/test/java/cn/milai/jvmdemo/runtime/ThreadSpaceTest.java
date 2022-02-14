@@ -4,8 +4,8 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.runtime.stack.Frame;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link ThreadSpace} 测试类

@@ -24,20 +24,17 @@ public class ThreadSpace {
 	}
 
 	public void invoke(Method method) {
-		if (method.isNative()) {
-			return;
-		}
 		Frame preFrame = currentFrame();
 		stack.push(new Frame(this, method));
 		Frame newFrame = currentFrame();
 		newFrame.setReturnPC(pc);
+		pc = 0;
 		if (preFrame != null) {
 			passArgs(preFrame.getOperandStack(), newFrame.getLocalVarsTable(), method.getArgsSlotCnt());
 		}
 		if (needInvokeClinit(method)) {
 			method.getClassInfo().init(this);
 		}
-		pc = 0;
 	}
 
 	private boolean needInvokeClinit(Method method) {

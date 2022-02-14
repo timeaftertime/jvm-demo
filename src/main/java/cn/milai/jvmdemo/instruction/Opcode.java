@@ -53,7 +53,9 @@ public enum Opcode {
 	NEW(0xbb), NEWARRAY(0xbc), ANEWARRAY(0xbd), ARRAYLENGTH(0xbe),
 	ATHROW(0xbf), CHECKCAST(0xc0), INSTANCEOF(0xc1), MONITORENTER(0xc2), MONITOREXIT(0xc3),
 	WIDE(0xc4), MULTIANEWARRAY(0xc5), IFNULL(0xc6), IFNONNULL(0xc7), GOTO_W(0xc8), JSR_W(0xc9),
-	BREAKPOINT(0xca), IMPDEP1(0xfe), IMPDEP2(0xff),;
+	BREAKPOINT(0xca), IMPDEP2(0xff),
+	
+	INVOKENATIVE(0xfe);
 
 	private int value;
 

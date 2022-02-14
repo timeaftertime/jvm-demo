@@ -7,12 +7,12 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.constant.PushInstructions.BIPUSH;
 import cn.milai.jvmdemo.instruction.constant.PushInstructions.SIPUSH;
 import cn.milai.jvmdemo.runtime.stack.Frame;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link PushInstructions} 测试类

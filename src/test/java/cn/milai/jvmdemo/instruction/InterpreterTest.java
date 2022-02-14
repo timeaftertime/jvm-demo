@@ -1,6 +1,7 @@
 package cn.milai.jvmdemo.instruction;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.io.IOException;
 import java.util.EmptyStackException;
@@ -11,14 +12,15 @@ import org.junit.Test;
 import cn.milai.jvmdemo.ClassInfoLoader;
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.constants.MethodConst;
 import cn.milai.jvmdemo.runtime.ClassInfo;
+import cn.milai.jvmdemo.runtime.Elements;
 import cn.milai.jvmdemo.runtime.ObjectRef;
 import cn.milai.jvmdemo.runtime.ThreadSpace;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 import cn.milai.jvmdemo.runtime.stack.OperandStack;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link Interpreter} 测试类
@@ -66,7 +68,7 @@ public class InterpreterTest {
 
 	@Test
 	public void testShowAddTest() throws IOException {
-		Frame mockFrame = executeMethod(Classes.ADD_TEST, "addAndMul2", "()F", false);
+		Frame mockFrame = executeMethod(Classes.ADD_TEST, "addAndMul2", "()F", true);
 		assertEquals(6, mockFrame.getOperandStack().popFloat(), 0.1);
 	}
 
@@ -107,6 +109,33 @@ public class InterpreterTest {
 		ObjectRef res = mockFrame.getOperandStack().popRef();
 		assertEquals(5060, res.getElements().getLong(0));
 		assertEquals(5060, res.getElements().getLong(1));
+	}
+
+	@Test
+	public void testHashCode() throws EmptyStackException, IOException {
+		Frame mockFrame = executeMethod(Classes.NATIVE_CALLER, "newHashCode", "()I", true);
+		assertNotEquals(0, mockFrame.getOperandStack().popInt());
+	}
+
+	@Test
+	public void testArrayCopy() throws EmptyStackException, IOException {
+		{
+			Frame mockFrame = executeMethod(Classes.NATIVE_CALLER, "arrayCopy", "()[I", true);
+			Elements es = mockFrame.getOperandStack().popRef().getElements();
+			for (int i = 0; i < es.getCapacity(); i++) {
+				assertEquals(i + 1, es.getInt(i));
+			}
+		}
+
+		{
+			Frame mockFrame = executeMethod(Classes.NATIVE_CALLER, "arrayCopyDouble", "()[D", true);
+			Elements es = mockFrame.getOperandStack().popRef().getElements();
+			double delta = 0.01;
+			assertEquals(0, es.getDouble(0), delta);
+			for (int i = 1; i < es.getCapacity() / 2; i++) {
+				assertEquals(i + 0.1, es.getDouble(i), delta);
+			}
+		}
 	}
 
 }

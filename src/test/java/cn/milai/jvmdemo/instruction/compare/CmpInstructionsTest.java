@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.compare.CmpInstructions.DCMPG;
 import cn.milai.jvmdemo.instruction.compare.CmpInstructions.DCMPL;
@@ -16,6 +15,7 @@ import cn.milai.jvmdemo.instruction.compare.CmpInstructions.FCMPL;
 import cn.milai.jvmdemo.instruction.compare.CmpInstructions.LCMP;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 import cn.milai.jvmdemo.runtime.stack.OperandStack;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link CmpInstructions} 测试类

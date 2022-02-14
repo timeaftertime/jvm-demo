@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.stack.DupInstructions.DUP;
 import cn.milai.jvmdemo.instruction.stack.DupInstructions.DUP2;
@@ -17,6 +16,7 @@ import cn.milai.jvmdemo.instruction.stack.DupInstructions.DUP_X1;
 import cn.milai.jvmdemo.instruction.stack.DupInstructions.DUP_X2;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 import cn.milai.jvmdemo.runtime.stack.OperandStack;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link DupInstructions} 测试类

@@ -1,7 +1,9 @@
 package cn.milai.jvmdemo.runtime;
 
 import cn.milai.jvmdemo.classfile.ClassMember;
+import cn.milai.jvmdemo.classfile.TypeDesc;
 import cn.milai.jvmdemo.classfile.attribute.CodeAttribute;
+import cn.milai.jvmdemo.instruction.Opcode;
 
 /**
  * 类方法
@@ -18,13 +20,52 @@ public class Method extends Member {
 	public Method(ClassInfo owner, ClassMember member, RTConstantPool pool) {
 		super(owner, member, pool);
 		descriptor = new Descriptor(getDescriptor(), isStatic());
-		parseCodeAttribute(member);
+		if (isNative()) {
+			injectNativeCode();
+		} else {
+			parseCodeAttribute(member);
+		}
+	}
+
+	/**
+	 * 根据方法描述注入 invoke_native 和 return 指令
+	 */
+	private void injectNativeCode() {
+		maxStack = 4;
+		maxLocal = descriptor.getArgsSlotCnt();
+		codes = buildNativeCode(TypeDesc.of(descriptor.getReturnType()));
+	}
+
+	private byte[] buildNativeCode(TypeDesc returnType) {
+		int returnCode = 0;
+		switch (returnType) {
+			case VOID :
+				returnCode = Opcode.RETURN.getValue();
+				break;
+			case INT :
+				returnCode = Opcode.IRETURN.getValue();
+				break;
+			case LONG :
+				returnCode = Opcode.LRETURN.getValue();
+				break;
+			case FLOAT :
+				returnCode = Opcode.FRETURN.getValue();
+				break;
+			case DOUBLE :
+				returnCode = Opcode.DRETURN.getValue();
+				break;
+			default:
+				returnCode = Opcode.ARETURN.getValue();
+				break;
+		}
+		return new byte[] { (byte) Opcode.INVOKENATIVE.getValue(), (byte) returnCode };
 	}
 
 	private void parseCodeAttribute(ClassMember member) {
 		CodeAttribute attribute = member.getCodeAttribute();
-		if (attribute == null)
+		if (attribute == null) {
 			return;
+		}
 		maxStack = attribute.getMaxStack();
 		maxLocal = attribute.getMaxLocal();
 		codes = attribute.getCodes();

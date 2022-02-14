@@ -9,7 +9,6 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.control.ReturnInstructions.ARETURN;
 import cn.milai.jvmdemo.instruction.control.ReturnInstructions.DRETURN;
@@ -19,6 +18,7 @@ import cn.milai.jvmdemo.instruction.control.ReturnInstructions.LRETURN;
 import cn.milai.jvmdemo.instruction.control.ReturnInstructions.RETURN;
 import cn.milai.jvmdemo.runtime.ObjectRef;
 import cn.milai.jvmdemo.runtime.ThreadSpace;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link ReturnInstructions} 测试类

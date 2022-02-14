@@ -132,6 +132,7 @@ import cn.milai.jvmdemo.instruction.math.SubInstructions.ISUB;
 import cn.milai.jvmdemo.instruction.math.SubInstructions.LSUB;
 import cn.milai.jvmdemo.instruction.math.XorInstructions.IXOR;
 import cn.milai.jvmdemo.instruction.math.XorInstructions.LXOR;
+import cn.milai.jvmdemo.instruction.natives.InvokeNative;
 import cn.milai.jvmdemo.instruction.reference.ANewArray;
 import cn.milai.jvmdemo.instruction.reference.ArrayLength;
 import cn.milai.jvmdemo.instruction.reference.CheckCast;
@@ -341,6 +342,8 @@ public class InstructionFactory {
 	public static final Instruction I_FCMPG = new FCMPG();
 	public static final Instruction I_DCMPL = new DCMPL();
 	public static final Instruction I_DCMPG = new DCMPG();
+
+	public static final Instruction I_INVOKENATIVE = new InvokeNative();
 
 	/**
 	 * 创建指定 {@code opcode} 的 {@link Instruction}
@@ -732,6 +735,9 @@ public class InstructionFactory {
 				return new IfNonNull();
 			case GOTO_W :
 				return new GotoW();
+
+			case INVOKENATIVE :
+				return I_INVOKENATIVE;
 
 			default:
 				throw new IllegalArgumentException("未实现指令类型: " + op);

@@ -7,13 +7,13 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.milai.jvmdemo.MockFactory;
 import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.math.SubInstructions.DSUB;
 import cn.milai.jvmdemo.instruction.math.SubInstructions.FSUB;
 import cn.milai.jvmdemo.instruction.math.SubInstructions.ISUB;
 import cn.milai.jvmdemo.instruction.math.SubInstructions.LSUB;
 import cn.milai.jvmdemo.runtime.stack.Frame;
+import cn.milai.jvmdemo.util.MockFactory;
 
 /**
  * {@link SubInstructions}  测试类
