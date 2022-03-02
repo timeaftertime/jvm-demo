@@ -1,5 +1,9 @@
 package cn.milai.jvmdemo.runtime;
 
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
+import cn.milai.jvmdemo.runtime.classes.Method;
+import cn.milai.jvmdemo.runtime.ref.AbstractMethodRef;
+
 /**
  * 将方法符号引用转换为直接引用的解析器
  * @author milai

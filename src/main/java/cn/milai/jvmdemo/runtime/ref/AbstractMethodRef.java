@@ -1,28 +1,29 @@
-package cn.milai.jvmdemo.runtime;
+package cn.milai.jvmdemo.runtime.ref;
 
 import cn.milai.jvmdemo.classfile.constant.ConstantPool;
-import cn.milai.jvmdemo.classfile.constant.FieldrefConstant;
+import cn.milai.jvmdemo.classfile.constant.RefConstant;
+import cn.milai.jvmdemo.runtime.RTConstantPool;
+import cn.milai.jvmdemo.runtime.classes.Method;
 import cn.milai.jvmdemo.util.ClassNames;
 
 /**
- * 字段引用
+ * 抽象的方法符号引用
  * @author milai
- * @date 2022.01.19
+ * @date 2021.12.15
  */
-public class FieldRef extends MemberRef {
+public abstract class AbstractMethodRef extends MemberRef {
 
 	private String className;
 	private String name;
 	private String descriptor;
 
-	private Field field;
+	private Method method;
 
-	public FieldRef(ConstantPool pool, RTConstantPool rtPool, FieldrefConstant c) {
+	public AbstractMethodRef(ConstantPool pool, RTConstantPool rtPool, RefConstant c) {
 		super(pool, rtPool);
 		className = ClassNames.fromSlash(pool.getUTF8(pool.getClass(c.getClassIndex()).getIndex()).getValue());
 		name = pool.getUTF8(pool.getNameAndType(c.getNameAndTypeIndex()).getNameIndex()).getValue();
 		descriptor = pool.getUTF8(pool.getNameAndType(c.getNameAndTypeIndex()).getDescriptorIndex()).getValue();
-		c.getNameAndTypeIndex();
 	}
 
 	@Override
@@ -36,13 +37,13 @@ public class FieldRef extends MemberRef {
 		return className;
 	}
 
-	public Field getField() { return field; }
+	public Method getMethod() { return method; }
 
-	public void setField(Field field) { this.field = field; }
-
-	@Override
-	public String toString() {
-		return "FieldRef [className=" + className + ", name=" + name + ", descriptor=" + descriptor + "]";
+	public void setMethod(Method method) {
+		if (this.method != null) {
+			throw new IllegalStateException("重复解析方法");
+		}
+		this.method = method;
 	}
 
 }

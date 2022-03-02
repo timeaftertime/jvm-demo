@@ -1,7 +1,8 @@
-package cn.milai.jvmdemo.runtime;
+package cn.milai.jvmdemo.runtime.ref;
 
 import cn.milai.jvmdemo.classfile.constant.ConstantPool;
 import cn.milai.jvmdemo.classfile.constant.MethodrefConstant;
+import cn.milai.jvmdemo.runtime.RTConstantPool;
 
 /**
  * 方法符号引用

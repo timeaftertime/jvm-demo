@@ -16,7 +16,7 @@ import cn.milai.jvmdemo.instruction.Instruction;
 import cn.milai.jvmdemo.instruction.constant.LdcInstructions.LDC;
 import cn.milai.jvmdemo.instruction.constant.LdcInstructions.LDC2_W;
 import cn.milai.jvmdemo.instruction.constant.LdcInstructions.LDC_W;
-import cn.milai.jvmdemo.runtime.ClassInfo;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 
 /**

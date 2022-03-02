@@ -1,6 +1,6 @@
 package cn.milai.jvmdemo;
 
-import cn.milai.jvmdemo.runtime.ClassInfo;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
 
 /**
  * {@link ClassInfo} 加载失败的异常

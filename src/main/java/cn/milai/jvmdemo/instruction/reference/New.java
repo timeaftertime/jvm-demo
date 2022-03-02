@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
-import cn.milai.jvmdemo.runtime.ClassInfo;
-import cn.milai.jvmdemo.runtime.ClassRef;
 import cn.milai.jvmdemo.runtime.ObjectRef;
 import cn.milai.jvmdemo.runtime.RTConstantPool;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
+import cn.milai.jvmdemo.runtime.ref.ClassRef;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 
 /**
@@ -30,6 +30,7 @@ public class New implements Instruction {
 		ClassRef ref = pool.getClassRef(operand);
 		ClassInfo classInfo = ref.resolvedClass();
 		if (!classInfo.isInitialized()) {
+			frame.getThreadSpace().setPC(frame.getCurrentPC());
 			classInfo.init(frame.getThreadSpace());
 			return;
 		}

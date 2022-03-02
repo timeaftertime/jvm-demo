@@ -8,7 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import cn.milai.jvmdemo.constants.ClassConst;
-import cn.milai.jvmdemo.runtime.ClassInfo;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
 
 /**
  * {@link DefaultClassInfoLoader} 测试类

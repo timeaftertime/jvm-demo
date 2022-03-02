@@ -2,8 +2,8 @@ package cn.milai.jvmdemo.instruction.natives;
 
 import cn.milai.jvmdemo.classfile.TypeDesc;
 import cn.milai.jvmdemo.constants.ClassConst;
-import cn.milai.jvmdemo.runtime.ClassInfo;
 import cn.milai.jvmdemo.runtime.ObjectRef;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 import cn.milai.jvmdemo.runtime.stack.LocalVarsTable;
 

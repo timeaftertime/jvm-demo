@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import cn.milai.jvmdemo.constants.ClassConst;
-import cn.milai.jvmdemo.runtime.Method;
+import cn.milai.jvmdemo.runtime.classes.Method;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 
 /**
@@ -39,6 +39,13 @@ public class NativeMethodRegistry {
 		register(ClassConst.OBJECT, "registerNatives", "()V", NativeMethod.EMPTY);
 		register(ClassConst.SYSTEM, "registerNatives", "()V", NativeMethod.EMPTY);
 		register(ClassConst.SYSTEM, "arraycopy", "(Ljava/lang/Object;ILjava/lang/Object;II)V", new SystemArrayCopy());
+		register(ClassConst.CLASS, "registerNatives", "()V", NativeMethod.EMPTY);
+		register(
+			ClassConst.CLASS, "desiredAssertionStatus0", "(Ljava/lang/Class;)Z", (frame) -> {
+				frame.getOperandStack().pushInt(0);
+			}
+		);
+		register(ClassConst.THROWABLE, "fillInStackTrace", "(I)Ljava/lang/Throwable;", new ThrowableFillInStackTrace());
 	}
 
 }

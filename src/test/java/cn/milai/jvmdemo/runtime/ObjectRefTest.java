@@ -13,6 +13,7 @@ import cn.milai.jvmdemo.DefaultClassInfoLoader;
 import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.classfile.TypeDesc;
 import cn.milai.jvmdemo.constants.ClassConst;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
 
 /**
  * {@link ObjectRef} 测试类

@@ -3,8 +3,8 @@ package cn.milai.jvmdemo.util;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import cn.milai.jvmdemo.runtime.ClassInfo;
-import cn.milai.jvmdemo.runtime.Method;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
+import cn.milai.jvmdemo.runtime.classes.Method;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 import cn.milai.jvmdemo.runtime.stack.LocalVarsTable;
 import cn.milai.jvmdemo.runtime.stack.OperandStack;

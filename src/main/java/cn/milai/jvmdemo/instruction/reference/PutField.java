@@ -6,12 +6,12 @@ import cn.milai.jvmdemo.classfile.TypeDesc;
 import cn.milai.jvmdemo.constants.MethodConst;
 import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
-import cn.milai.jvmdemo.runtime.ClassInfo;
-import cn.milai.jvmdemo.runtime.Field;
-import cn.milai.jvmdemo.runtime.FieldRef;
 import cn.milai.jvmdemo.runtime.FieldResolver;
 import cn.milai.jvmdemo.runtime.ObjectRef;
 import cn.milai.jvmdemo.runtime.RTConstantPool;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
+import cn.milai.jvmdemo.runtime.classes.Field;
+import cn.milai.jvmdemo.runtime.ref.FieldRef;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 
 /**
@@ -35,7 +35,7 @@ public class PutField implements Instruction {
 		FieldRef fieldRef = pool.getFieldRef(operand);
 		Field field = FieldResolver.resolve(fieldRef, false);
 		if (field.isFinal()) {
-			if (currentClass != field.getClassInfo() || MethodConst.isInit(frame.getMethod())) {
+			if (currentClass != field.getClassInfo() || !MethodConst.isInit(frame.getMethod())) {
 				throw new IllegalAccessError();
 			}
 		}
@@ -80,8 +80,9 @@ public class PutField implements Instruction {
 			case ARRAY : {
 				ObjectRef val = frame.getOperandStack().popRef();
 				ObjectRef ref = frame.getOperandStack().popRef();
-				if (ref == null)
+				if (ref == null) {
 					throw new NullPointerException();
+				}
 				ref.getFields().setRef(field.getSlotId(), val);
 				break;
 			}

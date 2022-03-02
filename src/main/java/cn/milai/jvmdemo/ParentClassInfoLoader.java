@@ -3,7 +3,7 @@ package cn.milai.jvmdemo;
 import java.util.HashMap;
 import java.util.Map;
 
-import cn.milai.jvmdemo.runtime.ClassInfo;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
 
 /**
  * {@link ClassInfo} 加载器

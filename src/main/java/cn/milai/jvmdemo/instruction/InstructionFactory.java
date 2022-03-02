@@ -135,6 +135,7 @@ import cn.milai.jvmdemo.instruction.math.XorInstructions.LXOR;
 import cn.milai.jvmdemo.instruction.natives.InvokeNative;
 import cn.milai.jvmdemo.instruction.reference.ANewArray;
 import cn.milai.jvmdemo.instruction.reference.ArrayLength;
+import cn.milai.jvmdemo.instruction.reference.Athrow;
 import cn.milai.jvmdemo.instruction.reference.CheckCast;
 import cn.milai.jvmdemo.instruction.reference.GetField;
 import cn.milai.jvmdemo.instruction.reference.GetStatic;
@@ -342,6 +343,8 @@ public class InstructionFactory {
 	public static final Instruction I_FCMPG = new FCMPG();
 	public static final Instruction I_DCMPL = new DCMPL();
 	public static final Instruction I_DCMPG = new DCMPG();
+
+	public static final Instruction I_ATHROW = new Athrow();
 
 	public static final Instruction I_INVOKENATIVE = new InvokeNative();
 
@@ -701,6 +704,8 @@ public class InstructionFactory {
 				return new ANewArray();
 			case ARRAYLENGTH :
 				return new ArrayLength();
+			case ATHROW :
+				return I_ATHROW;
 			case CHECKCAST :
 				return new CheckCast();
 			case INSTANCEOF :

@@ -9,6 +9,11 @@ import cn.milai.jvmdemo.classfile.constant.InterfaceMethodrefConstant;
 import cn.milai.jvmdemo.classfile.constant.MethodrefConstant;
 import cn.milai.jvmdemo.classfile.constant.StringConstant;
 import cn.milai.jvmdemo.classfile.constant.ValueConstant;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
+import cn.milai.jvmdemo.runtime.ref.ClassRef;
+import cn.milai.jvmdemo.runtime.ref.FieldRef;
+import cn.milai.jvmdemo.runtime.ref.InterfaceMethodref;
+import cn.milai.jvmdemo.runtime.ref.MethodRef;
 
 /**
  * 运行时常量池

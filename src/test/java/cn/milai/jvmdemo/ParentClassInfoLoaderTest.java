@@ -9,7 +9,7 @@ import static org.junit.Assert.fail;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import cn.milai.jvmdemo.runtime.ClassInfo;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
 
 /**
  * {@link ParentClassInfoLoader} 测试类

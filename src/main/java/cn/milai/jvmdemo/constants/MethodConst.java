@@ -1,7 +1,7 @@
 package cn.milai.jvmdemo.constants;
 
 import cn.milai.jvmdemo.classfile.TypeDesc;
-import cn.milai.jvmdemo.runtime.Method;
+import cn.milai.jvmdemo.runtime.classes.Method;
 
 /**
  * 方法相关常量

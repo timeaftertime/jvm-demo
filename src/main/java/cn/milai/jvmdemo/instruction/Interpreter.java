@@ -28,6 +28,7 @@ public class Interpreter {
 			Instruction ins = InstructionFactory.create(opCode);
 			ins.readOperands(reader);
 			thread.setPC(reader.getPC());
+			System.out.println(currentFrame.getMethod() + " " + Opcode.find(opCode));
 			ins.execute(currentFrame);
 			reader.reset(thread.currentFrame().getMethod().getCodes(), thread.getPC());
 		}

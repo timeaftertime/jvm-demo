@@ -1,7 +1,8 @@
-package cn.milai.jvmdemo.runtime;
+package cn.milai.jvmdemo.runtime.classes;
 
 import cn.milai.jvmdemo.classfile.ClassMember;
 import cn.milai.jvmdemo.classfile.attribute.ConstantValueAttribute;
+import cn.milai.jvmdemo.runtime.RTConstantPool;
 
 /**
  * 类字段

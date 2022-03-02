@@ -1,7 +1,4 @@
-package cn.milai.jvmdemo.runtime;
-
-import cn.milai.jvmdemo.runtime.slot.SlotList;
-import cn.milai.jvmdemo.runtime.slot.TableSlots;
+package cn.milai.jvmdemo.runtime.slot;
 
 /**
  * 类成员 {@link SlotList}

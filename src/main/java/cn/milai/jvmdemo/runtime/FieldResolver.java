@@ -1,5 +1,9 @@
 package cn.milai.jvmdemo.runtime;
 
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
+import cn.milai.jvmdemo.runtime.classes.Field;
+import cn.milai.jvmdemo.runtime.ref.FieldRef;
+
 /**
  * 将字段符号引用转换为直接引用的工具类
  * @author milai

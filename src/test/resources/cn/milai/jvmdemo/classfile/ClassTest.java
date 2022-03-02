@@ -1,4 +1,4 @@
-package cn.milai.jvmdemo.classfile.constant;
+package cn.milai.jvmdemo.classfile;
 
 public class ClassTest {
 

@@ -1,6 +1,7 @@
 package cn.milai.jvmdemo.runtime;
 
 import cn.milai.jvmdemo.constants.MethodConst;
+import cn.milai.jvmdemo.runtime.classes.Method;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 import cn.milai.jvmdemo.runtime.stack.JVMStack;
 import cn.milai.jvmdemo.runtime.stack.LocalVarsTable;

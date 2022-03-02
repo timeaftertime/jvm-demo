@@ -12,8 +12,8 @@ import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
-import cn.milai.jvmdemo.runtime.ClassInfo;
 import cn.milai.jvmdemo.runtime.ThreadSpace;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 
 /**

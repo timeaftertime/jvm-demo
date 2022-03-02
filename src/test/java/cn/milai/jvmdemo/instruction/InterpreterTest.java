@@ -14,10 +14,10 @@ import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
 import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.constants.MethodConst;
-import cn.milai.jvmdemo.runtime.ClassInfo;
-import cn.milai.jvmdemo.runtime.Elements;
 import cn.milai.jvmdemo.runtime.ObjectRef;
 import cn.milai.jvmdemo.runtime.ThreadSpace;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
+import cn.milai.jvmdemo.runtime.slot.Elements;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 import cn.milai.jvmdemo.runtime.stack.OperandStack;
 import cn.milai.jvmdemo.util.MockFactory;
@@ -136,6 +136,12 @@ public class InterpreterTest {
 				assertEquals(i + 0.1, es.getDouble(i), delta);
 			}
 		}
+	}
+	
+	@Test
+	public void testThrowHandle() throws EmptyStackException, IOException {
+		Frame mockFrame = executeMethod(Classes.EXCEPTION_HANDLE, "get", "()I", true);
+		assertEquals(2, mockFrame.getOperandStack().popInt());
 	}
 
 }

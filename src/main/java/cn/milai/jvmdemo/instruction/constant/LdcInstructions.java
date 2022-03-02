@@ -4,7 +4,11 @@ import java.io.IOException;
 
 import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
+import cn.milai.jvmdemo.runtime.ClassPool;
 import cn.milai.jvmdemo.runtime.RTConstantPool;
+import cn.milai.jvmdemo.runtime.StringPool;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
+import cn.milai.jvmdemo.runtime.ref.ClassRef;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 import cn.milai.jvmdemo.runtime.stack.OperandStack;
 
@@ -37,6 +41,7 @@ public class LdcInstructions {
 		@Override
 		public void execute(Frame frame) {
 			OperandStack stack = frame.getOperandStack();
+			ClassInfo classInfo = frame.getMethod().getClassInfo();
 			Object val = frame.getMethod().getClassInfo().getConstantPool().get(operand);
 			if (val instanceof Integer) {
 				stack.pushInt((int) val);
@@ -46,8 +51,15 @@ public class LdcInstructions {
 				stack.pushFloat((float) val);
 				return;
 			}
-			// TODO 引用类型
-			throw new RuntimeException("暂未实现");
+			if (val instanceof String) {
+				stack.pushRef(StringPool.getString(classInfo.getClassInfoLoader(), (String) val));
+				return;
+			}
+			if (val instanceof ClassRef) {
+				stack.pushRef(ClassPool.getRef(((ClassRef) val).resolvedClass()));
+				return;
+			}
+			throw new RuntimeException("尚未实现");
 		}
 
 	}
@@ -62,7 +74,8 @@ public class LdcInstructions {
 		@Override
 		public void execute(Frame frame) {
 			OperandStack stack = frame.getOperandStack();
-			RTConstantPool pool = frame.getMethod().getClassInfo().getConstantPool();
+			ClassInfo classInfo = frame.getMethod().getClassInfo();
+			RTConstantPool pool = classInfo.getConstantPool();
 			Object val = pool.get(operand);
 			if (val instanceof Integer) {
 				stack.pushInt((int) val);
@@ -72,7 +85,15 @@ public class LdcInstructions {
 				stack.pushFloat((float) val);
 				return;
 			}
-			throw new RuntimeException("暂未实现");
+			if (val instanceof String) {
+				stack.pushRef(StringPool.getString(classInfo.getClassInfoLoader(), (String) val));
+				return;
+			}
+			if (val instanceof ClassRef) {
+				stack.pushRef(ClassPool.getRef(((ClassRef) val).resolvedClass()));
+				return;
+			}
+			throw new RuntimeException("尚未实现");
 		}
 
 	}
@@ -87,6 +108,7 @@ public class LdcInstructions {
 		@Override
 		public void execute(Frame frame) {
 			OperandStack stack = frame.getOperandStack();
+			ClassInfo classInfo = frame.getMethod().getClassInfo();
 			RTConstantPool pool = frame.getMethod().getClassInfo().getConstantPool();
 			Object val = pool.get(operand);
 			if (val instanceof Long) {
@@ -97,7 +119,15 @@ public class LdcInstructions {
 				stack.pushDouble((double) val);
 				return;
 			}
-			throw new ClassFormatError();
+			if (val instanceof String) {
+				stack.pushRef(StringPool.getString(classInfo.getClassInfoLoader(), (String) val));
+				return;
+			}
+			if (val instanceof ClassRef) {
+				stack.pushRef(ClassPool.getRef(((ClassRef) val).resolvedClass()));
+				return;
+			}
+			throw new RuntimeException("尚未实现");
 		}
 
 	}

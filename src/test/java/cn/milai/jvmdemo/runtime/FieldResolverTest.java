@@ -7,6 +7,9 @@ import org.junit.Test;
 
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.TestClassInfoLoader;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
+import cn.milai.jvmdemo.runtime.classes.Field;
+import cn.milai.jvmdemo.runtime.ref.FieldRef;
 
 /**
  * {@link FieldResolver} 测试类

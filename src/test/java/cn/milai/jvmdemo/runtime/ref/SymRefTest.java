@@ -1,4 +1,4 @@
-package cn.milai.jvmdemo.runtime;
+package cn.milai.jvmdemo.runtime.ref;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
@@ -11,6 +11,8 @@ import org.junit.Test;
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
 import cn.milai.jvmdemo.TestClassInfoLoader;
+import cn.milai.jvmdemo.runtime.RTConstantPool;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
 
 /**
  * {@link SymRef} 测试类

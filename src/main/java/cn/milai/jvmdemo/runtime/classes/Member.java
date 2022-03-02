@@ -1,7 +1,8 @@
-package cn.milai.jvmdemo.runtime;
+package cn.milai.jvmdemo.runtime.classes;
 
 import cn.milai.jvmdemo.classfile.AccessMask;
 import cn.milai.jvmdemo.classfile.ClassMember;
+import cn.milai.jvmdemo.runtime.RTConstantPool;
 
 /**
  * 类成员

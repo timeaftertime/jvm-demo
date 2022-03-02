@@ -1,7 +1,7 @@
 package cn.milai.jvmdemo.runtime.stack;
 
-import cn.milai.jvmdemo.runtime.Method;
 import cn.milai.jvmdemo.runtime.ThreadSpace;
+import cn.milai.jvmdemo.runtime.classes.Method;
 
 /**
  * 栈帧

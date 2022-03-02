@@ -1,4 +1,4 @@
-package cn.milai.jvmdemo.runtime;
+package cn.milai.jvmdemo.runtime.classes;
 
 import cn.milai.jvmdemo.ClassInfoLoader;
 import cn.milai.jvmdemo.classfile.AccessMask;
@@ -10,6 +10,9 @@ import cn.milai.jvmdemo.classfile.constant.ClassConstant;
 import cn.milai.jvmdemo.classfile.constant.ConstantPool;
 import cn.milai.jvmdemo.constants.ClassConst;
 import cn.milai.jvmdemo.constants.MethodConst;
+import cn.milai.jvmdemo.runtime.RTConstantPool;
+import cn.milai.jvmdemo.runtime.ThreadSpace;
+import cn.milai.jvmdemo.runtime.slot.MemberSlots;
 import cn.milai.jvmdemo.util.ClassNames;
 
 /**

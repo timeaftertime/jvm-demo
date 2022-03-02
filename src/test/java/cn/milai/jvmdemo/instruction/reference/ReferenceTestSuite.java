@@ -8,7 +8,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses(
 	{
 		NewTest.class, AnewArrayTest.class, ArrayLengthTest.class, CheckCastTest.class, InstanceofTest.class,
-		NewArrayTest.class, GetFieldTest.class, GetStaticTest.class, PutFieldTest.class, PutStaticTest.class
+		NewArrayTest.class, GetFieldTest.class, GetStaticTest.class, PutFieldTest.class, PutStaticTest.class, AthrowTest.class
 	}
 )
 public class ReferenceTestSuite {

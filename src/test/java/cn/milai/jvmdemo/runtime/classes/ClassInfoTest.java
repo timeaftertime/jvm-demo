@@ -1,4 +1,4 @@
-package cn.milai.jvmdemo.runtime;
+package cn.milai.jvmdemo.runtime.classes;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -16,8 +16,8 @@ import org.junit.Test;
 import cn.milai.jvmdemo.ClassInfoLoader;
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.DefaultClassInfoLoader;
-import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.ParentClassInfoLoader;
+import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.classfile.TypeDesc;
 
 /**

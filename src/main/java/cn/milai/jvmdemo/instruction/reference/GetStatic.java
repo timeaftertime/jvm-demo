@@ -5,11 +5,11 @@ import java.io.IOException;
 import cn.milai.jvmdemo.classfile.TypeDesc;
 import cn.milai.jvmdemo.instruction.BytecodeReader;
 import cn.milai.jvmdemo.instruction.Instruction;
-import cn.milai.jvmdemo.runtime.Field;
-import cn.milai.jvmdemo.runtime.FieldRef;
 import cn.milai.jvmdemo.runtime.FieldResolver;
-import cn.milai.jvmdemo.runtime.MemberSlots;
 import cn.milai.jvmdemo.runtime.RTConstantPool;
+import cn.milai.jvmdemo.runtime.classes.Field;
+import cn.milai.jvmdemo.runtime.ref.FieldRef;
+import cn.milai.jvmdemo.runtime.slot.MemberSlots;
 import cn.milai.jvmdemo.runtime.stack.Frame;
 
 /**

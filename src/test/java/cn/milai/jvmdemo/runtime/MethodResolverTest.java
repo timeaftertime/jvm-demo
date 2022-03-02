@@ -10,6 +10,9 @@ import cn.milai.jvmdemo.DefaultClassInfoLoader;
 import cn.milai.jvmdemo.TestClassInfoLoader;
 import cn.milai.jvmdemo.classfile.TypeDesc;
 import cn.milai.jvmdemo.constants.MethodConst;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
+import cn.milai.jvmdemo.runtime.classes.Method;
+import cn.milai.jvmdemo.runtime.ref.MethodRef;
 
 /**
  * {@link MethodResolver} 测试类

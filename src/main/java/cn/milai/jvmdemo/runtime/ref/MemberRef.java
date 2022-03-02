@@ -1,6 +1,7 @@
-package cn.milai.jvmdemo.runtime;
+package cn.milai.jvmdemo.runtime.ref;
 
 import cn.milai.jvmdemo.classfile.constant.ConstantPool;
+import cn.milai.jvmdemo.runtime.RTConstantPool;
 
 public abstract class MemberRef extends SymRef {
 

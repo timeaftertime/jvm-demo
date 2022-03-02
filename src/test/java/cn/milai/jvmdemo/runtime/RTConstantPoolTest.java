@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import cn.milai.jvmdemo.Classes;
 import cn.milai.jvmdemo.classfile.ClassMetadataRes;
+import cn.milai.jvmdemo.runtime.ref.MemberRef;
 
 /**
  * {@link RTConstantPool} 测试类

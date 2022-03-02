@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import cn.milai.jvmdemo.classfile.TypeDesc;
-import cn.milai.jvmdemo.runtime.ClassInfo;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
 
 /**
  * 类相关常量
@@ -53,6 +53,10 @@ public class ClassConst {
 	public static final String CLONEABLE = "java.lang.Cloneable";
 
 	public static final String SERIALIZABLE = "java.io.Serializable";
+
+	public static final String THROWABLE = "java.lang.Throwable";
+
+	public static final String CLASS = "java.lang.Class";
 
 	/**
 	 * 判断指定类名是否表示数组类
@@ -127,6 +131,19 @@ public class ClassConst {
 			throw new IllegalArgumentException("不是数组类型:" + arrayClassName);
 		}
 		return arrayClassName.substring(1);
+	}
+
+	/**
+	 * 判断指定类代表 {@link Throwable} 及其子类
+	 * @param c
+	 * @return
+	 */
+	public static boolean isThrowable(ClassInfo c) {
+		if (c == null) {
+			return false;
+		}
+		ClassInfo throwable = c.getClassInfoLoader().load(THROWABLE);
+		return c == throwable || c.isSubClassOf(throwable);
 	}
 
 }

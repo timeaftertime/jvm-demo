@@ -1,9 +1,14 @@
-package cn.milai.jvmdemo.runtime;
+package cn.milai.jvmdemo.runtime.classes;
 
 import cn.milai.jvmdemo.classfile.ClassMember;
 import cn.milai.jvmdemo.classfile.TypeDesc;
 import cn.milai.jvmdemo.classfile.attribute.CodeAttribute;
+import cn.milai.jvmdemo.classfile.attribute.LineNumberTableAttribute;
 import cn.milai.jvmdemo.instruction.Opcode;
+import cn.milai.jvmdemo.runtime.Descriptor;
+import cn.milai.jvmdemo.runtime.ExceptionHandler;
+import cn.milai.jvmdemo.runtime.LineNumberResolver;
+import cn.milai.jvmdemo.runtime.RTConstantPool;
 
 /**
  * 类方法
@@ -16,6 +21,8 @@ public class Method extends Member {
 	private int maxLocal;
 	private byte[] codes;
 	private Descriptor descriptor;
+	private ExceptionHandler exceptionHandler;
+	private LineNumberResolver lineNumberResolver;
 
 	public Method(ClassInfo owner, ClassMember member, RTConstantPool pool) {
 		super(owner, member, pool);
@@ -42,6 +49,9 @@ public class Method extends Member {
 			case VOID :
 				returnCode = Opcode.RETURN.getValue();
 				break;
+			case BOOLEAN :
+			case SHORT :
+			case BYTE :
 			case INT :
 				returnCode = Opcode.IRETURN.getValue();
 				break;
@@ -69,6 +79,11 @@ public class Method extends Member {
 		maxStack = attribute.getMaxStack();
 		maxLocal = attribute.getMaxLocal();
 		codes = attribute.getCodes();
+		exceptionHandler = new ExceptionHandler(this, attribute.getExceptionAttributes());
+		LineNumberTableAttribute lineNumberAttribute = attribute.getLineNumberAttribute();
+		if (lineNumberAttribute != null) {
+			lineNumberResolver = new LineNumberResolver(lineNumberAttribute.getLineNumberTables());
+		}
 	}
 
 	public boolean isSynchronized() { return getAccess().isSynchronized(); }
@@ -92,6 +107,10 @@ public class Method extends Member {
 	public String getReturnType() { return descriptor.getReturnType(); }
 
 	public int getArgsSlotCnt() { return descriptor.getArgsSlotCnt(); }
+
+	public ExceptionHandler getExceptionHandler() { return exceptionHandler; }
+
+	public LineNumberResolver getLineNumberResolver() { return lineNumberResolver; }
 
 	@Override
 	public String toString() {

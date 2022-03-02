@@ -39,8 +39,10 @@ public class Classes {
 	public static final String ARRAY_TEST = "cn.milai.jvmdemo.instruction.ArrayTest";
 
 	public static final String CALCULATOR = "cn.milai.jvmdemo.instruction.Calculator";
-	
+
 	public static final String NATIVE_CALLER = "cn.milai.jvmdemo.instruction.NativeCaller";
+
+	public static final String EXCEPTION_HANDLE = "cn.milai.jvmdemo.instruction.ExceptionHandle";
 
 	public static final String OBJECT = ClassConst.OBJECT;
 
@@ -69,4 +71,6 @@ public class Classes {
 	public static final String FILE_INPUT = "java.io.FilterInputStream";
 
 	public static final String FUNCTION = "java.util.function.Function";
+
+	public static final String RUNTIME_EXCEPTION = "java.lang.RuntimeException";
 }

@@ -12,7 +12,7 @@ import java.util.Map;
 
 import cn.milai.jvmdemo.classfile.ClassMetadata;
 import cn.milai.jvmdemo.constants.ClassConst;
-import cn.milai.jvmdemo.runtime.ClassInfo;
+import cn.milai.jvmdemo.runtime.classes.ClassInfo;
 import cn.milai.jvmdemo.util.ClassNames;
 
 /**

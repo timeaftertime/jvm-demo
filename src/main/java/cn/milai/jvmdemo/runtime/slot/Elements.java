@@ -1,6 +1,4 @@
-package cn.milai.jvmdemo.runtime;
-
-import cn.milai.jvmdemo.runtime.slot.TableSlots;
+package cn.milai.jvmdemo.runtime.slot;
 
 /**
  * 数组元素

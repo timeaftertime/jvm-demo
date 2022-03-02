@@ -5,7 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import cn.milai.jvmdemo.ClassInfoLoader;
 import cn.milai.jvmdemo.Classes;
+import cn.milai.jvmdemo.TestClassInfoLoader;
 
 /**
  * {@link ClassConst} 测试类
@@ -32,6 +34,15 @@ public class ClassConstTest {
 		assertTrue(ClassConst.isArray(ClassConst.ARRAY_PREFIX + Classes.ADD_TEST));
 		assertFalse(ClassConst.isArray(null));
 		assertFalse(ClassConst.isArray(Classes.ADD_TEST));
+	}
+
+	@Test
+	public void testIsThrowable() {
+		ClassInfoLoader loader = TestClassInfoLoader.get();
+		assertTrue(ClassConst.isThrowable(loader.load(ClassConst.THROWABLE)));
+		assertTrue(ClassConst.isThrowable(loader.load(Classes.RUNTIME_EXCEPTION)));
+		assertFalse(ClassConst.isThrowable(loader.load(Classes.ADD_TEST)));
+		assertFalse(ClassConst.isThrowable(loader.load(Classes.OBJECT)));
 	}
 
 }
